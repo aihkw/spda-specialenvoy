@@ -368,7 +368,7 @@ div.scroll-container div a {
     left: 50%;
     transform: translateX(-50%);
     color: white;
-    font-size: 1vw;
+    font-size: 1.3vw;
     text-align: justify;
     margin-bottom: 2vw;
 }
@@ -397,22 +397,28 @@ div.scroll-container div a {
 .grid {
     margin: .5vw;
     border-radius: 1vw;
-    width: 20vw;
-    height: 25vw;
+    width: 14.5vw;
+    height: 20vw;
     overflow: hidden;
     display: inline-grid;
     border: var(--border-outline);
     cursor: pointer;
 }
 .grid img {
-    height: 40%;
+    height: 100%;
     background-size: cover;
 }
 .grid a {
     position: absolute;
     padding: 10px;
     background: var(--background);
-    width: 19vw;
+    width: 22%;
+    color: white;
+    overflow: hidden;
+    font-size: 1.3vw;
+}
+
+div a {
     color: white;
 }
 

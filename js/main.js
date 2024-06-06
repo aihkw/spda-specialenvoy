@@ -123,6 +123,7 @@ fetch('/api/projects.json')
   data.forEach(item => {
     let grid = document.createElement('div');
     grid.classList.add('grid');
+    grid.setAttribute('onclick', `window.location.href = '/projects/${item['title'].toLowerCase()}.html'`);
     let a = document.createElement('a');
     a.innerHTML = item['title'];
     grid.appendChild(a);

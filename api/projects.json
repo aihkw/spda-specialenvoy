@@ -8,13 +8,44 @@
     {
         "title": "Infrastructure"
     },
+
     {
-        "title": "Infrastructure"
+        "title": "Education"
     },
     {
-        "title": "Infrastructure"
+        "title": "Energy"
     },
     {
-        "title": "Infrastructure"
+        "title": "Public Utilities"
+    },
+
+    {
+        "title": "Housing"
+    },
+    {
+        "title": "Land Development"
+    },
+    {
+        "title": "Manufacturing"
+    },
+    
+    {
+        "title": "Natural Resources"
+    },
+    {
+        "title": "Financial Hub"
+    },
+    {
+        "title": "Fintech"
+    },
+
+    {
+        "title": "Tourism"
+    },
+    {
+        "title": "Medical & Healthcare"
+    },
+    {
+        "title": "Technology"
     }
 ]
