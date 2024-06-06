@@ -1,0 +1,146 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet/less" type="text/css" href="/css/main.less" />
+        <script language="JavaScript" type="text/javascript" src="/js/jquery.js"></script>
+        <script language="JavaScript" type="text/javascript" src="/js/jquery-ui.js"></script>
+        <script src="/js/less.js" type="text/javascript"></script>
+        <title>SPDA Special Envoy</title>
+    </head>
+    <body>
+        <div class="topnav">
+            <a>Home</a>
+        </div>
+
+        <div class="stickyplayer">
+            <iframe class="videoplayer"></iframe>
+            <button onclick="closeplayer()" class="noselect" style="left: 50%; transform: translateX(-50%); position: fixed; top: calc(50% + 20vw)"><span class="text">Close</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
+        </div>
+
+        <video class="fsvd" autoplay muted loop><source src="assets/phbg.mp4"></video>
+
+        <div>
+            <div class="pane" style="float: left; right: 0; left: 1vw;">
+                <div class="pane-tilt">
+                    <img class="pane-tilt-image" src="assets/spda_logo.png">
+                </div>
+            </div>
+            <div class="pane" style="float: left; right: 0; left: -15vw; margin-left: 1vw; margin-top: 16vw;">
+                <div class="pane-tilt">
+                    <img class="pane-tilt-image" src="assets/otptp.png">
+                </div>
+            </div>
+            <div class="pane" style="float: right">
+                <div class="pane-tilt">
+                    <img class="pane-tilt-image" src="assets/QR.png">
+                </div>
+            </div>
+        </div>
+        
+        <div class="page" style="display: block; position: absolute; margin-top: 75px; top: 1vw;">
+            <a class="hollow-title">Special Envoy Message</a>
+        </div>
+
+        <div class='console-container' style="font-size: 3.5vw; margin-top: 75px !important; top: 7vw; left: 50%; transform: translateX(-50%); overflow: hidden; width: 100%; margin: 0;"><span id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
+        
+        <button class="spdapd" style="position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 53vw;
+        z-index: 100;
+        font-size: 2vw;
+        width: 45vw; padding: 1.5vw;" onclick="window.open('assets/SPDAPD.pdf')">SPDA Presidential Decree</button>
+
+        <div style="display: block;
+                    position: absolute;
+                    margin-top: 55vw;
+                    width: 100%;
+                    min-height: 30px;
+                    height: 15vw;
+                    filter: blur(2px);
+                    background-image: linear-gradient(#376291, black);">
+        </div>
+
+        
+        <div>
+            <div class="pane" style="float: left; top: 75vw; left: -25vw; width: 45vw; height: 30vw;">
+                <div class="pane-tilt">
+                    <img class="pane-tilt-image" src="assets/dsfi_otptp.jpeg">
+                    <a class="pane-desc">H.E. PEHIN SERI DIRAJA DATO' SERI FARID IBRAHIM</a>
+                </div>
+            </div>
+            <div class="pane" style="float: left; top: 77vw; left: -25vw; width: 45vw; height: 30vw;">
+                <div class="pane-tilt">
+                    <img class="pane-tilt-image" src="assets/dsfi_reappointed.jpg">
+                    <a class="pane-desc" style="top: 78%; height: 7vw;">Reappointed as Special Envoy by SPDA Administrator<br>Hon. Abdulghani "Gerry" A. Salapuddin under<br>The HE BBM Administration</a>
+                </div>
+            </div>
+    
+            <div class="pane" style="top: 25vw; float: right; width: 45vw; height: 30vw;">
+                <div class="pane-tilt">
+                    <img class="pane-tilt-image" src="assets/placeholder-image.jpg">
+                    <a class="pane-desc" style="top: 85%">Jesus "Jess" Gestuveo Dureza<br>Presidential Adviser ib the Peace Process (OPAPP)</a>
+                </div>
+            </div>
+        </div>
+        
+        <section>
+            <h1 class="title">NEWS</h1>
+            <div class="scroll-container news"></div>
+
+            <h1 class="title">ADVOCACY</h1>
+            <div class="scroll-container advocacy"></div>
+
+            <h1 class="title">DISCLAIMER</h1>
+            <img src="assets/dsfi.png" class="mugshot"><br>
+            <p class="desc">Ladies and Gentlemen,
+                <br><br>
+                I, Pehin Seri Diraja Dato Seri Farid Ibrahim, wish to share a project idea concerning intellectual property matters in the Southern Philippines for the purpose of promoting awareness and discussion. However, I want to clarify that the contents of this website are solely intended as informational and should not be construed as legal advice or a representation of official policies.
+                <br><br>
+                <span class="flex">Informative Nature</span><br>
+                The project idea presented in this document is based on general knowledge and understanding of intellectual property principles as of the information on this website only. It is essential to note that intellectual property laws and regulations are subject to change and can vary significantly between jurisdictions. Consequently, the information provided may not reflect the most current legal requirements or practices in the Southern Philippines or any other region.
+                <br><br>
+                <span class="flex">Not Legal Advice</span><br>
+                The content of this website should not be interpreted as legal advice. For any specific legal concerns or queries regarding intellectual property matters in the Southern Philippines, it is imperative to seek professional advice from qualified legal practitioners with expertise in intellectual property law.
+                <br><br>
+                <span class="flex">No Endorsement</span><br>
+                The presentation of this project idea does not constitute an endorsement or promotion of any specific course of action, products, or services related to intellectual property. Any references to third-party entities or organizations are purely for illustrative purposes and do not imply an endorsement or partnership.
+                <br><br>
+                <span class="flex">Rights and Responsibilities</span><br>
+                Any potential actions or initiatives taken based on this website are the responsibility of the relevant stakeholders or parties involved. I disclaim any liability for actions taken or decisions made in response to the information provided herein.
+                <br><br>
+                <span class="flex">Confidentiality</span><br>
+                The contents of this website are not confidential and may be shared publicly or with relevant parties for discussions and collaborations related to intellectual property matters in the Southern Philippines.
+                <br><br>
+                In conclusion, I reiterate that this project idea is purely informational and does not constitute legal advice or official policy. It is essential to conduct thorough research, seek expert advice, and comply with relevant laws and regulations when undertaking any initiatives related to intellectual property in the Southern Philippines or elsewhere.
+                <br><br>
+                Sincerely,
+                <br>
+                Pehin Seri Diraja Dato Seri Farid Ibrahim </p>
+            <br>
+
+            <h1>Section 1</h1>
+            <h2>Declration of policy</h2>
+            <p class="desc">lt is hereby declared the policy of the Government to foster and accelerate the balanced growth of Mindanao and Sulu archipelago within the context of national plans and policies, by the activation of mass participation in the processes of development to be exercised through a unified responsive agency; democratization of opportunity for improvement and maximization of benefits in the utilization and allocation of all the resources that may be available.</p>
+            <h1>Section 2</h1>
+            <h2>Creation of the Southern Philippines Development Administration</h2>
+            <p class="desc">There is hereby created a body corporate to be known as the Southern Philippines Development Administration, hereinafter referred to as the "Administration" which shall be governed by the provisions of this Decree. Generally, the Administration shall be the agency of the government which shall be responsible for the initiation and/or implementation of development projects in such areas or fields where other government offices have not taken action or have failed as may be agreed upon between the office or agency concerned and the Administration. Pending such arrangement or in case of conflict, the Administration may proceed to undertake the project subject to prior approval of the President of the Philippines upon recommendation of the NEDA.</p>
+            <h1>Section 4</h1>
+            <h2>Declration of policy</h2>
+            <p class="desc"><br>The Administration shall have the purposes and objectives given as follows:<br><br><span style="font-weight: bold;">A.</span> Promote the development of Mindanao and Sulu archipelago by initiating and/or undertaking by itself or otherwise, development and/or business projects in social and/or economic fields whether in;</p>
+            <div class="grid-container" id="projects"></div>
+        </section>
+
+        <canvas id="stars" style="position: absolute; z-index: 999; width: 0;"></canvas>
+        <div id="particles-js"></div>
+        <canvas id="stars" style="position: absolute; top: 100vw; z-index: 999; width: 0;"></canvas>
+        <div id="particles-js"></div>
+        <canvas id="stars" style="position: absolute; z-index: 999; width: 0;"></canvas>
+        <div id="particles-js"></div>
+
+        <script src="js/main.js"></script>
+        <script src="js/stars.js"></script>
+    </body>
+</html>

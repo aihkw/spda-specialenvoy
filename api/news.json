@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Marcos retains Basileño as SPDA administrator",
+        "onclick": "window.open('https://www.ndbcnews.com.ph/news/marcos-retains-basile%C3%B1o-spda-administrator')"
+    },
+    {
+        "title": "A year of Marcos Jr:<br>how a dictator's son has changed the Philippines",
+        "onclick": "window.open('https://www.theguardian.com/world/2023/jun/30/a-year-of-marcos-jr-how-a-dictators-son-has-changed-the-philippines')"
+    },
+    {
+        "title": "SPDA Turn Over Ceremony to<br>the new Administrator<br>CEO Abdulghani Gerry Ajul Salapuddin",
+        "onclick": "modalVideo('https://www.youtube.com/embed/dbHUnFqiRMg', 'SPDA Turn Over Ceremony to the new Administrator CEO Abdulghani Gerry Ajul Salapuddin')"
+    },
+    {
+        "title": "SPDA Company Profile",
+        "onclick": "modalVideo('https://youtube.com/embed/3jIOOL-S9-o', 'SPDA Company Profile AVP')"
+    },
+    {
+        "title": "Inauguration of the Improving Growth Corridors in Mindanao Road Sector Project (Speech) 7/21/2023",
+        "onclick": "modalVideo('https://www.youtube.com/embed/cKAlC9KXEEA', 'Inauguration of the Improving Growth Corridors in Mindanao Road Sector Project (Speech) 7/21/2023')"
+    },
+    {
+        "title": "Signing of the Maharlika Investment Fund Act 07/18/23",
+        "onclick": "modalVideo('https://www.youtube.com/embed/iLnerzkpT5o', 'Signing of the Maharlika Investment Fund Act 07/18/23')"
+    },
+    {
+        "title": "WATCH: PH Energy Secretary Raphael Lotilla on roadmap to energy security and clean energy | ANC",
+        "onclick": "modalVideo('https://www.youtube.com/embed/fcxnLWave7A', 'WATCH: PH Energy Secretary Raphael Lotilla on roadmap to energy security and clean energy | ANC')"
+    },
+    {
+        "title": "PCO Press Briefing with DFA 07/21/2023",
+        "onclick": "modalVideo('https://www.youtube.com/embed/Zk46icbq7gk', 'PCO Press Briefing with DFA 07/21/2023')"
+    },
+    {
+        "title": "Ceremonial Loan Agreement Signing for the Davao Public Transport Modernization Project 07/01/2023",
+        "onclick": "modalVideo('https://www.youtube.com/embed/K3AU1YTzqkI', 'Ceremonial Loan Agreement Signing for the Davao Public Transport Modernization Project 07/01/2023')"
+    },
+    {
+        "title": "Silverbear Capital: Perspective on investing in Asia | Peter Chun, Managing Partner",
+        "onclick": "modalVideo('https://www.youtube.com/embed/t--BS-7rbk0', 'Silverbear Capital: Perspective on investing in Asia | Peter Chun, Managing Partner')"
+    }
+]
