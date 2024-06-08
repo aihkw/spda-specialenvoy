@@ -1,0 +1,67 @@
+[
+    {
+        "type": "a",
+        "title": "Home",
+        "href": "/" 
+    },
+    {
+        "type": "div",
+        "title": "Projects",
+        "items": [
+            {
+                "title": "Agriculture"
+            },
+            {
+                "title": "Power"
+            },
+            {
+                "title": "Infrastructure"
+            },
+        
+            {
+                "title": "Education"
+            },
+            {
+                "title": "Energy"
+            },
+            {
+                "title": "Public Utilities"
+            },
+        
+            {
+                "title": "Housing"
+            },
+            {
+                "title": "Land Development"
+            },
+            {
+                "title": "Manufacturing"
+            },
+            
+            {
+                "title": "Natural Resources"
+            },
+            {
+                "title": "Financial Hub"
+            },
+            {
+                "title": "Fintech"
+            },
+        
+            {
+                "title": "Tourism"
+            },
+            {
+                "title": "Medical & Healthcare"
+            },
+            {
+                "title": "Technology"
+            }
+        ]
+    },
+    {
+        "type": "a",
+        "title": "Gallery",
+        "href": "/gallery.html" 
+    }
+]

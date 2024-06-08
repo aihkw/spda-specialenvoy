@@ -2,50 +2,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>SPDA | Power</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/css/main.css">
-        <link rel="icon" href="/images2/main/spda_logo.jpg" type="/image/jpg">
-        <script src="/js/main.js"></script>
+        <link rel="stylesheet" href="/css/topnav.css">
+        <link rel="stylesheet/less" type="text/css" href="/css/main.less" />
+        <link rel="icon" type="image/png" href="/assets/spda_logo.png">
+        <script language="JavaScript" type="text/javascript" src="/js/jquery.js"></script>
+        <script language="JavaScript" type="text/javascript" src="/js/jquery-ui.js"></script>
+        <script src="/js/less.js" type="text/javascript"></script>
+        <meta name="theme-color" content="#ffffff">
+        <meta property="og:title" content="SPDA Special Envoy > Power">
+        <meta property="og:description" content="Power Project">
+        <meta property="og:type" content="website">
+        <title>Power</title>
     </head>
     <body>
-        <!-- TOP NAV BACK -->
-        <div>
-            <div style="
-            background-color: rgb(49, 49, 49);
-            width: 100%;
-            height: 4vw;
-            position: fixed;
-            z-index: 98;">
-                <a id="totalhit"></a><a class="tnav">Power</a>
-                <button style="
-                        position: absolute;
-                        transform: translateY(-50%);
-                        background: none;
-                        border: 0;
-                        color: white;
-                        font-size: 40px;
-                        top: 50%;
-                        float: left;
-                        left: 30px;
-                        cursor: pointer;
-                        height: 100%;
-                        font-weight: bold;
-                " onclick="history.back()">&lt;</button>
-                <button style="
-                    position: sticky;
-                    transform: rotate(90deg) translateX(-50%);
-                    background: none;
-                    border: 0;
-                    color: white;
-                    font-size: 40px;
-                    top: 50%;
-                    float: right;
-                    right: 30px;
-                    cursor: pointer;
-                    ">|||
-                </button>
-            </div>
-        </div>
+        <div class="topnav"></div>
 
         <!-- START -->
         <div>
@@ -56,7 +29,7 @@
                 background-repeat: no-repeat;
                 background-size: 630vw;
                 filter: blur(10px);
-                background-image: url('/images2/main/grid.png?width=1167&height=676');
+                background-image: url('/assets/main/grid.png?width=1167&height=676');
             ">
             </div>
             <a class="sectionTitle" style="
@@ -107,7 +80,7 @@
                 background-repeat: no-repeat;
                 width: 100%;
                 background-size: 100%;
-                background-image: url('/images2/main/substation-bus-configurations_1.jpg');
+                background-image: url('/assets/main/substation-bus-configurations_1.jpg');
             ">
                 <a style="
                     display: block;
@@ -130,7 +103,7 @@
                 background-repeat: no-repeat;
                 width: 100%;
                 background-size: 100%;
-                background-image: url('/images2/main/c3a8638305fc794515168013a43c33e2.png');
+                background-image: url('/assets/main/c3a8638305fc794515168013a43c33e2.png');
             ">
                 <a style="
                     display: block;
@@ -153,7 +126,7 @@
                 background-repeat: no-repeat;
                 width: 100%;
                 background-size: 100%;
-                background-image: url('/images2/main/geothermal_cleanup.jpg');
+                background-image: url('/assets/main/geothermal_cleanup.jpg');
             ">
                 <a style="
                     display: block;
@@ -176,7 +149,7 @@
                 background-repeat: no-repeat;
                 width: 100%;
                 background-size: 100%;
-                background-image: url('/images2/main/image.png');
+                background-image: url('/assets/main/image.png');
             ">
                 <a style="
                     display: block;
@@ -199,7 +172,7 @@
                 background-repeat: no-repeat;
                 width: 100%;
                 background-size: 100%;
-                background-image: url('/images2/main/MIT-Windy-Impact-01.jpg?width=1014&height=676');
+                background-image: url('/assets/main/MIT-Windy-Impact-01.jpg?width=1014&height=676');
             ">
                 <a style="
                     display: block;
@@ -223,7 +196,7 @@
                 background-repeat: no-repeat;
                 width: 100%;
                 background-size: 100%;
-                background-image: url('/images2/main/MOL-FSRU.jpg');
+                background-image: url('/assets/main/MOL-FSRU.jpg');
             ">
                 <a style="
                     display: block;
@@ -246,7 +219,7 @@
                 background-repeat: no-repeat;
                 width: 100%;
                 background-size: 100%;
-                background-image: url('/images2/main/floating-solar-watermark4-scaled-e1603258256655-1200x494.jpg');
+                background-image: url('/assets/main/floating-solar-watermark4-scaled-e1603258256655-1200x494.jpg');
             ">
                 <a style="
                     display: block;
@@ -269,7 +242,7 @@
                 background-repeat: no-repeat;
                 width: 100%;
                 background-size: 100%;
-                background-image: url('/images2/main/Haliade3-1024x683.jpg?width=1014&height=676');
+                background-image: url('/assets/main/Haliade3-1024x683.jpg?width=1014&height=676');
             ">
                 <a style="
                     display: block;
@@ -292,7 +265,7 @@
                 background-repeat: no-repeat;
                 width: 100%;
                 background-size: 100%;
-                background-image: url('/images2/main/stena_option02_ipb-gmax-org_01-min.png');
+                background-image: url('/assets/main/stena_option02_ipb-gmax-org_01-min.png');
             ">
                 <a style="
                     display: block;
@@ -319,5 +292,14 @@
                 <a class="copy">&copy; 2023, HE Pehin Seri Diraja Dato' Seri Farid Ibrahim, All rights reserved.</a>
             </div>
         </div>
+
+        <canvas id="stars" style="position: absolute; z-index: 999; width: 0;"></canvas>
+        <div id="particles-js"></div>
+        <canvas id="stars" style="position: absolute; top: 100vw; z-index: 999; width: 0;"></canvas>
+        <div id="particles-js"></div>
+        <canvas id="stars" style="position: absolute; z-index: 999; width: 0;"></canvas>
+        <div id="particles-js"></div>
+        <script src="/js/main.js"></script>
+        <script src="/js/stars.js"></script>
     </body>
 </html>

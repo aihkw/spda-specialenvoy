@@ -66,53 +66,103 @@ function consoleText(words, id, colors) {
 }
 
 tiltElement()
-consoleText([
-  "Diplomatic trade liaison",
-  "Strategic investment facilitator",
-  "Innovative commerce advocate",
-  "Economic partnership architect",
-  "Regional development catalyst",
-  "Policy diplomacy expert",
-  "Cross-border trade strategist",
-  "Investment promotion specialist",
-  "Sustainable commerce advocate",
-  "Market access facilitator",
-], 'text',['white', 'red', 'blue']);
 
+// topnav
+fetch('/api/topnav.json')
+.then(response => response.json())
+.then(data => {
+  try {
+    data.forEach(item => {
+      let element
+      if (item.type === 'a') {
+        let a = document.createElement('a');
+        a.innerHTML = item.title;
+        a.href = item.href;
+        element = a;
+        document.querySelector('.topnav').appendChild(a);
+      } else if (item.type === 'div') {
+        let div = document.createElement('div');
+        div.innerHTML = item.title;
+        div.classList.add('dropdown')
+        let dropdown_content = document.createElement('div');
+        dropdown_content.classList.add('dropdown-content');
+        div.appendChild(dropdown_content)
+        item.items.forEach(element => {
+          let a = document.createElement('a');
+          a.innerHTML = element.title;
+          a.href = `/${item.title}/${element.title}.html`;
+          dropdown_content.appendChild(a);
+        })
+        element = div;
+        document.querySelector('.topnav').appendChild(div);
+      }
+
+      if (window.location.pathname == item.href) {
+        element.classList.add('active');
+      }
+      if (window.location.pathname.split('/')[1] == item.title) {
+        element.classList.add('active');
+      }
+    })
+  } catch (err) {console.log(err)}
+})
+
+// Console text
+try {
+  consoleText([
+    "Diplomatic trade liaison",
+    "Strategic investment facilitator",
+    "Innovative commerce advocate",
+    "Economic partnership architect",
+    "Regional development catalyst",
+    "Policy diplomacy expert",
+    "Cross-border trade strategist",
+    "Investment promotion specialist",
+    "Sustainable commerce advocate",
+    "Market access facilitator",
+  ], 'text',['white', 'red', 'blue']);
+} catch {}
+
+// News
 fetch('/api/news.json')
 .then(response => response.json())
 .then(data => {
-  let count = 0
-  data.forEach(item => {
-    let div = document.createElement('div');
-    div.style.background = `url(/assets/news/n${count+1}.png)`;
-    div.style.backgroundSize = `cover`;
-    div.style.display = `inline-block`;
-    div.setAttribute('onclick', item['onclick']);
-    document.querySelector('.news').appendChild(div);
-    let a = document.createElement('a');
-    a.innerHTML = item['title'];
-    div.appendChild(a);
-    count += 1
-  })
+  try {
+    let count = 0
+    data.forEach(item => {
+      let div = document.createElement('div');
+      div.style.background = `url(/assets/news/n${count+1}.png)`;
+      div.style.backgroundSize = `cover`;
+      div.style.display = `inline-block`;
+      div.setAttribute('onclick', item['onclick']);
+      document.querySelector('.news').appendChild(div);
+      let a = document.createElement('a');
+      a.innerHTML = item['title'];
+      div.appendChild(a);
+      count += 1
+    })
+  } catch {}
 })
 
+// Advocacy
 fetch('/api/advocacy.json')
 .then(response => response.json())
 .then(data => {
-  let count = 0
-  data.forEach(item => {
-    let div = document.createElement('div');
-    div.style.background = `url(/assets/news/n${count+1}.png)`;
-    div.style.backgroundSize = `cover`;
-    div.style.display = `inline-block`;
-    div.setAttribute('onclick', item['onclick']);
-    document.querySelector('.news').appendChild(div);
-    let a = document.createElement('a');
-    a.innerHTML = item['title'];
-    div.appendChild(a);
-    count += 1
-  })
+  try {
+    let count = 0
+    data.forEach(item => {
+      let div = document.createElement('div');
+      div.style.background = `url(/assets/advocacy/a${count+1}.png)`;
+      div.style.backgroundSize = `cover`;
+      div.style.display = `inline-block`;
+      div.setAttribute('onclick', item['onclick']);
+      document.querySelector('.advocacy').appendChild(div);
+      let a = document.createElement('a');
+      a.innerHTML = item['title'];
+      div.appendChild(a);
+      count += 1
+    })
+  } catch {}
 })
 
 // Projects
@@ -120,18 +170,20 @@ const div_projects = document.querySelector('#projects');
 fetch('/api/projects.json')
 .then(response => response.json())
 .then(data => {
-  data.forEach(item => {
-    let grid = document.createElement('div');
-    grid.classList.add('grid');
-    grid.setAttribute('onclick', `window.location.href = '/projects/${item['title'].toLowerCase()}.html'`);
-    let a = document.createElement('a');
-    a.innerHTML = item['title'];
-    grid.appendChild(a);
-    let img = document.createElement('img');
-    img.src = `/assets/projects/${item['title'].toLowerCase()}.png`
-    grid.appendChild(img);
-    div_projects.append(grid)
-  });
+  try {
+    data.forEach(item => {
+      let grid = document.createElement('div');
+      grid.classList.add('grid');
+      grid.setAttribute('onclick', `window.location.href = '/projects/${item['title'].toLowerCase()}.html'`);
+      let a = document.createElement('a');
+      a.innerHTML = item['title'];
+      grid.appendChild(a);
+      let img = document.createElement('img');
+      img.src = `/assets/projects/${item['title'].toLowerCase()}.png`
+      grid.appendChild(img);
+      div_projects.append(grid)
+    });
+  } catch {}
 })
 
 var stickyplayer = document.querySelector('.stickyplayer');
