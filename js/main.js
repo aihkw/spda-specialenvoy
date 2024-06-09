@@ -90,7 +90,7 @@ fetch('/api/topnav.json')
         item.items.forEach(element => {
           let a = document.createElement('a');
           a.innerHTML = element.title;
-          a.href = `/${item.title}/${element.title}.html`;
+          a.href = `/${item.title.toLowerCase()}/${element.title.toLowerCase()}.html`;
           dropdown_content.appendChild(a);
         })
         element = div;
