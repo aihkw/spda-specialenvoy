@@ -1,149 +1,748 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/main.css">
-        <link rel="stylesheet" href="/css/topnav.css">
-        <link rel="stylesheet/less" type="text/css" href="/css/main.less" />
-        <link rel="icon" type="image/png" href="/assets/spda_logo.png">
-        <script language="JavaScript" type="text/javascript" src="/js/jquery.js"></script>
-        <script language="JavaScript" type="text/javascript" src="/js/jquery-ui.js"></script>
-        <script src="/js/less.js" type="text/javascript"></script>
-        <meta name="theme-color" content="#ffffff">
-        <meta property="og:title" content="SPDA Special Envoy">
-        <meta property="og:description" content="This is the main page">
-        <meta property="og:type" content="website">
-        <title>SPDA Special Envoy</title>
-    </head>
-    <body>
-        <div class="topnav"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPDA Special Envoy</title>
 
-        <div class="stickyplayer">
-            <iframe class="videoplayer"></iframe>
-            <button onclick="closeplayer()" class="noselect" style="left: 50%; transform: translateX(-50%); position: fixed; top: calc(50% + 20vw)"><span class="text">Close</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
-        </div>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        <video class="fsvd" autoplay muted loop><source src="/assets/phbg.mp4"></video>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-        <div>
-            <div class="pane" style="float: left; right: 0; left: 1vw;">
-                <div class="pane-tilt">
-                    <img class="pane-tilt-image" src="/assets/spda_logo.png">
-                </div>
-            </div>
-            <div class="pane" style="float: left; right: 0; left: -15vw; margin-left: 1vw; margin-top: 16vw;">
-                <div class="pane-tilt">
-                    <img class="pane-tilt-image" src="/assets/otptp.png">
-                </div>
-            </div>
-            <div class="pane" style="float: right">
-                <div class="pane-tilt">
-                    <img class="pane-tilt-image" src="assets/QR.png">
-                </div>
-            </div>
-        </div>
-        
-        <div class="page" style="display: block; position: absolute; margin-top: 75px; top: 1vw;">
-            <a class="hollow-title">Special Envoy Message</a>
-        </div>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        <div class='console-container' style="font-size: 3.5vw; margin-top: 75px !important; top: 7vw; left: 50%; transform: translateX(-50%); overflow: hidden; width: 100%; margin: 0;"><span id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
-        
-        <button class="spdapd" style="position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 53vw;
-        z-index: 100;
-        font-size: 2vw;
-        width: 45vw; padding: 1.5vw;" onclick="window.open('assets/SPDAPD.pdf')">SPDA Presidential Decree</button>
+    <link rel="icon" type="image/png" href="/assets/spda_logo.png">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta property="og:title" content="SPDA Special Envoy">
+    <meta property="og:description" content="Special Philippines Development Administration - Special Envoy">
+    <meta property="og:type" content="website">
 
-        <div style="display: block;
-                    position: absolute;
-                    margin-top: 55vw;
-                    width: 100%;
-                    min-height: 30px;
-                    height: 15vw;
-                    filter: blur(2px);
-                    background-image: linear-gradient(#376291, black);">
-        </div>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3748 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .fade-in-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-element.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
 
-        
-        <div>
-            <div class="pane" style="float: left; margin-top: 35vw; left: 50%; width: 80vw; height: 45vw; transform: translateX(-50%);">
-                <div class="pane-tilt">
-                    <img class="pane-tilt-image" src="assets/dsfi_otptp.jpeg">
-                    <a class="pane-desc">H.E. PEHIN SERI DIRAJA DATO' SERI FARID IBRAHIM</a>
-                </div>
-            </div>
-            <div class="pane" style="float: left; margin-top: 3vw; left: 50%; width: 80vw; height: 45vw; transform: translateX(-50%);">
-                <div class="pane-tilt">
-                    <img class="pane-tilt-image" src="assets/dsfi_reappointed.jpg">
-                    <a class="pane-desc" style="top: 78%; height: 7vw;">Reappointed as Special Envoy by SPDA Administrator<br>Hon. Abdulghani "Gerry" A. Salapuddin under<br>The HE BBM Administration</a>
-                </div>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a1a1a',
+                        secondary: '#f5f5f5',
+                        accent: '#3b82f6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-900 smooth-scroll">
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 bg-black/80 z-[100] hidden items-center justify-center p-4">
+        <div class="relative w-full max-w-5xl bg-black rounded-xl overflow-hidden shadow-2xl">
+            <button onclick="closeVideoModal()" type="button" aria-label="Close video" class="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-white/20 hover:bg-white/30 rounded-full backdrop-blur-sm transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-white"></i>
+            </button>
+            <div class="relative aspect-video">
+                <iframe id="video-iframe" title="Video player" class="absolute inset-0 w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
-        
-        <section style="margin-top: 38vw;">
-            <h1 class="title">NEWS</h1>
-            <div class="scroll-container news"></div>
+    </div>
 
-            <h1 class="title">ADVOCACY</h1>
-            <div class="scroll-container advocacy"></div>
-
-            <h1 class="title">DISCLAIMER</h1>
-            <img src="assets/dsfi.png" class="mugshot"><br>
-            <p class="desc">Ladies and Gentlemen,
-                <br><br>
-                I, Pehin Seri Diraja Dato Seri Farid Ibrahim, wish to share a project idea concerning intellectual property matters in the Southern Philippines for the purpose of promoting awareness and discussion. However, I want to clarify that the contents of this website are solely intended as informational and should not be construed as legal advice or a representation of official policies.
-                <br><br>
-                <span class="flex">Informative Nature</span><br>
-                The project idea presented in this document is based on general knowledge and understanding of intellectual property principles as of the information on this website only. It is essential to note that intellectual property laws and regulations are subject to change and can vary significantly between jurisdictions. Consequently, the information provided may not reflect the most current legal requirements or practices in the Southern Philippines or any other region.
-                <br><br>
-                <span class="flex">Not Legal Advice</span><br>
-                The content of this website should not be interpreted as legal advice. For any specific legal concerns or queries regarding intellectual property matters in the Southern Philippines, it is imperative to seek professional advice from qualified legal practitioners with expertise in intellectual property law.
-                <br><br>
-                <span class="flex">No Endorsement</span><br>
-                The presentation of this project idea does not constitute an endorsement or promotion of any specific course of action, products, or services related to intellectual property. Any references to third-party entities or organizations are purely for illustrative purposes and do not imply an endorsement or partnership.
-                <br><br>
-                <span class="flex">Rights and Responsibilities</span><br>
-                Any potential actions or initiatives taken based on this website are the responsibility of the relevant stakeholders or parties involved. I disclaim any liability for actions taken or decisions made in response to the information provided herein.
-                <br><br>
-                <span class="flex">Confidentiality</span><br>
-                The contents of this website are not confidential and may be shared publicly or with relevant parties for discussions and collaborations related to intellectual property matters in the Southern Philippines.
-                <br><br>
-                In conclusion, I reiterate that this project idea is purely informational and does not constitute legal advice or official policy. It is essential to conduct thorough research, seek expert advice, and comply with relevant laws and regulations when undertaking any initiatives related to intellectual property in the Southern Philippines or elsewhere.
-                <br><br>
-                Sincerely,
-                <br>
-                Pehin Seri Diraja Dato Seri Farid Ibrahim </p>
-            <br>
-
-            <h1>Section 1</h1>
-            <h2>Declration of policy</h2>
-            <p class="desc">lt is hereby declared the policy of the Government to foster and accelerate the balanced growth of Mindanao and Sulu archipelago within the context of national plans and policies, by the activation of mass participation in the processes of development to be exercised through a unified responsive agency; democratization of opportunity for improvement and maximization of benefits in the utilization and allocation of all the resources that may be available.</p>
-            <h1>Section 2</h1>
-            <h2>Creation of the Southern Philippines Development Administration</h2>
-            <p class="desc">There is hereby created a body corporate to be known as the Southern Philippines Development Administration, hereinafter referred to as the "Administration" which shall be governed by the provisions of this Decree. Generally, the Administration shall be the agency of the government which shall be responsible for the initiation and/or implementation of development projects in such areas or fields where other government offices have not taken action or have failed as may be agreed upon between the office or agency concerned and the Administration. Pending such arrangement or in case of conflict, the Administration may proceed to undertake the project subject to prior approval of the President of the Philippines upon recommendation of the NEDA.</p>
-            <h1>Section 4</h1>
-            <h2>Declration of policy</h2>
-            <p class="desc"><br>The Administration shall have the purposes and objectives given as follows:<br><br><span style="font-weight: bold;">A.</span> Promote the development of Mindanao and Sulu archipelago by initiating and/or undertaking by itself or otherwise, development and/or business projects in social and/or economic fields whether in;</p>
-            <div class="grid-container" id="projects"></div><br>
-            <p class="desc"><span style="font-weight: bold;">B.</span> Generate and encourage mass active participation and cooperation of the members of national cultural communities in its activities which shall comprise, among others: manpower development, provision of material, financial or technical assistance; and initiation, development and/or implementation of projects giving preference to cultural community groups, including programs designed for the immediate return, resettlement, and rehabilitation of evacuees;</p>
-            <p class="desc"><span style="font-weight: bold;">C.</span> Generate and encourage mass active participation and Initiate and undertake projects for the promotion of community life through organized social or economic activities and institutionalized schemes of assistance and incentives; and</p>
-            <p class="desc"><span style="font-weight: bold;">D.</span> Make investments in any field that would enhance the socio-economic development of the region, the uplift of living standards of the people and their socio-political stability.</p>
-    
-            <div style="background-image: url(/assets/back.jpg); margin-top: 5vw;">
-                <a style="display: block; position: relative; font-size: 4vw; text-align: center; padding: 5vw; border: var(--border-outline); background: rgba(0, 0, 0, .7); font-weight: bold;">"Advocacy for Southern Philippines' development is not merely a choice; it's a commitment to empower lives, bridge divides, and unlock the region's true potential. Together, we can create a brighter future, where inclusiveness, innovation, and sustainable growth intertwine, making the entire nation a beacon of progress in the region."</a>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <img src="/assets/spda_logo.png" alt="SPDA Logo" class="h-10 w-10">
+                    <span class="font-semibold text-lg">SPDA Special Envoy</span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</a>
+                    <a href="#message" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">Message</a>
+                    <a href="#news" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">News</a>
+                    <a href="#advocacy" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">Advocacy</a>
+                    <div class="relative group">
+                        <button type="button" class="text-gray-700 hover:text-blue-600 transition-colors font-medium flex items-center gap-1">
+                            Projects
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </button>
+                        <div class="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="py-2" id="projects-dropdown">
+                                <!-- Project links will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/gallery.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">Gallery</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">About</a>
+                </div>
+                <button id="mobile-menu-btn" type="button" aria-label="Toggle mobile menu" class="md:hidden p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
             </div>
-        </section>
+        </div>
 
-        <canvas id="stars" style="position: absolute; z-index: 999; width: 0;"></canvas>
-        <div id="particles-js"></div>
-        <canvas id="stars" style="position: absolute; top: 100vw; z-index: 999; width: 0;"></canvas>
-        <div id="particles-js"></div>
-        <canvas id="stars" style="position: absolute; z-index: 999; width: 0;"></canvas>
-        <div id="particles-js"></div>
-        <script src="/js/main.js"></script>
-        <script src="/js/stars.js"></script>
-    </body>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium">Home</a>
+                <a href="#message" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium">Message</a>
+                <a href="#news" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium">News</a>
+                <a href="#advocacy" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium">Advocacy</a>
+                <div>
+                    <button type="button" id="mobile-projects-btn" class="w-full text-left text-gray-700 hover:text-blue-600 transition-colors font-medium flex items-center justify-between">
+                        Projects
+                        <i data-lucide="chevron-down" class="w-4 h-4 transition-transform" id="mobile-projects-icon"></i>
+                    </button>
+                    <div id="mobile-projects-dropdown" class="hidden pl-4 mt-2 space-y-2">
+                        <!-- Project links will be loaded here -->
+                    </div>
+                </div>
+                <a href="/gallery.html" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium">Gallery</a>
+                <a href="#about" class="block text-gray-700 hover:text-blue-600 transition-colors font-medium">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-24 pb-20 px-4 sm:px-6 lg:px-8 min-h-screen flex items-center overflow-hidden">
+        <!-- Video Background -->
+        <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="assets/phbg.mp4" type="video/mp4">
+        </video>
+
+        <!-- Subtle Overlay for text readability -->
+        <div class="absolute inset-0 bg-black/30"></div>
+
+        <div class="max-w-7xl mx-auto w-full relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-white fade-in-element" style="text-shadow: 0 2px 10px rgba(0,0,0,0.7);">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                        Special Envoy <br/>
+                        <span class="text-blue-400">Message</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8 font-light">
+                        Fostering development and prosperity in the Southern Philippines
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="assets/SPDAPD.pdf" target="_blank" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl">
+                            <i data-lucide="file-text" class="w-5 h-5 mr-2"></i>
+                            SPDA Presidential Decree
+                        </a>
+                        <a href="#message" class="inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-colors backdrop-blur-sm">
+                            Learn More
+                            <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center space-x-6 fade-in-element">
+                    <img src="/assets/spda_logo.png" alt="SPDA Logo" class="w-48 h-48 object-contain rounded-2xl shadow-2xl">
+                    <img src="/assets/otptp.png" alt="OTPTP" class="w-48 h-48 object-contain rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Envoy Profile -->
+    <section id="message" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Special Envoy</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="order-2 md:order-1">
+                    <h3 class="text-3xl font-bold mb-4">H.E. PEHIN SERI DIRAJA DATO' SERI FARID IBRAHIM</h3>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        Serving as Special Envoy under the SPDA, dedicated to promoting the development and prosperity
+                        of Mindanao and the Sulu archipelago.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                        <p class="text-gray-700 font-medium">
+                            Reappointed as Special Envoy by SPDA Administrator Hon. Abdulghani "Gerry" A. Salapuddin
+                            under The HE BBM Administration
+                        </p>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <img src="assets/dsfi_otptp.jpeg" alt="Special Envoy" class="rounded-2xl shadow-2xl w-full card-hover">
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-1 gap-8">
+                <img src="assets/dsfi_reappointed.jpg" alt="Reappointment" class="rounded-2xl shadow-xl w-full max-w-4xl mx-auto card-hover">
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">News</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-xl text-gray-600">Latest updates and announcements</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6" id="news-container">
+                <!-- News items will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Advocacy Section -->
+    <section id="advocacy" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Advocacy</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-xl text-gray-600">Our mission and commitment</p>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-12 text-white text-center shadow-2xl mb-16">
+                <i data-lucide="quote" class="w-12 h-12 mx-auto mb-6 opacity-50"></i>
+                <p class="text-2xl md:text-3xl font-light leading-relaxed max-w-4xl mx-auto mb-6">
+                    "Advocacy for Southern Philippines' development is not merely a choice; it's a commitment to empower lives,
+                    bridge divides, and unlock the region's true potential. Together, we can create a brighter future,
+                    where inclusiveness, innovation, and sustainable growth intertwine, making the entire nation a beacon of progress in the region."
+                </p>
+                <p class="text-lg md:text-xl font-medium opacity-90">
+                    — Pehin Seri Diraja Dato' Seri Farid Ibrahim
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6" id="advocacy-container">
+                <!-- Advocacy items will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Development Projects</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-xl text-gray-600">Key sectors for Southern Philippines development</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="projects-container">
+                <!-- Project items will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SPDA Objectives -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">SPDA Mandate</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-xl text-gray-600">Southern Philippines Development Administration</p>
+            </div>
+
+            <div class="space-y-12">
+                <!-- Declaration of Policy -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full font-bold">
+                                1
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">Declaration of Policy</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                It is hereby declared the policy of the Government to foster and accelerate the balanced growth
+                                of Mindanao and Sulu archipelago within the context of national plans and policies, by the activation
+                                of mass participation in the processes of development to be exercised through a unified responsive agency;
+                                democratization of opportunity for improvement and maximization of benefits in the utilization and
+                                allocation of all the resources that may be available.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creation -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full font-bold">
+                                2
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-3">Creation of the Southern Philippines Development Administration</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                There is hereby created a body corporate to be known as the Southern Philippines Development Administration,
+                                hereinafter referred to as the "Administration" which shall be governed by the provisions of this Decree.
+                                Generally, the Administration shall be the agency of the government which shall be responsible for the
+                                initiation and/or implementation of development projects in such areas or fields where other government
+                                offices have not taken action or have failed as may be agreed upon between the office or agency concerned
+                                and the Administration.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Objectives -->
+                <div class="bg-gray-50 rounded-xl p-8 shadow-lg">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full font-bold">
+                                4
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">Purposes and Objectives</h3>
+                            <p class="text-gray-700 mb-6 leading-relaxed">
+                                The Administration shall have the purposes and objectives given as follows:
+                            </p>
+
+                            <div class="space-y-6">
+                                <div class="border-l-4 border-blue-600 pl-6">
+                                    <h4 class="font-bold text-lg mb-2">A. Development Projects</h4>
+                                    <p class="text-gray-700">
+                                        Promote the development of Mindanao and Sulu archipelago by initiating and/or undertaking
+                                        by itself or otherwise, development and/or business projects in social and/or economic fields.
+                                    </p>
+                                </div>
+
+                                <div class="border-l-4 border-blue-600 pl-6">
+                                    <h4 class="font-bold text-lg mb-2">B. Community Participation</h4>
+                                    <p class="text-gray-700">
+                                        Generate and encourage mass active participation and cooperation of the members of national
+                                        cultural communities in its activities which shall comprise, among others: manpower development,
+                                        provision of material, financial or technical assistance; and initiation, development and/or
+                                        implementation of projects giving preference to cultural community groups, including programs
+                                        designed for the immediate return, resettlement, and rehabilitation of evacuees.
+                                    </p>
+                                </div>
+
+                                <div class="border-l-4 border-blue-600 pl-6">
+                                    <h4 class="font-bold text-lg mb-2">C. Community Life Promotion</h4>
+                                    <p class="text-gray-700">
+                                        Initiate and undertake projects for the promotion of community life through organized social
+                                        or economic activities and institutionalized schemes of assistance and incentives.
+                                    </p>
+                                </div>
+
+                                <div class="border-l-4 border-blue-600 pl-6">
+                                    <h4 class="font-bold text-lg mb-2">D. Investment and Development</h4>
+                                    <p class="text-gray-700">
+                                        Make investments in any field that would enhance the socio-economic development of the region,
+                                        the uplift of living standards of the people and their socio-political stability.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Disclaimer</h2>
+                <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                <div class="flex justify-center mb-8">
+                    <img src="assets/dsfi.png" alt="H.E. PSDDDSFI" class="w-48 h-48 rounded-full object-cover shadow-lg">
+                </div>
+
+                <div class="prose prose-lg max-w-none text-gray-700 space-y-6">
+                    <p class="text-lg leading-relaxed">
+                        <strong>Ladies and Gentlemen,</strong>
+                    </p>
+
+                    <p class="leading-relaxed">
+                        I, Pehin Seri Diraja Dato Seri Farid Ibrahim, wish to share a project idea concerning intellectual property
+                        matters in the Southern Philippines for the purpose of promoting awareness and discussion. However, I want to
+                        clarify that the contents of this website are solely intended as informational and should not be construed as
+                        legal advice or a representation of official policies.
+                    </p>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                        <h4 class="font-bold text-xl mb-2 text-blue-900">Informative Nature</h4>
+                        <p class="leading-relaxed text-gray-700">
+                            The project idea presented in this document is based on general knowledge and understanding of intellectual
+                            property principles as of the information on this website only. It is essential to note that intellectual
+                            property laws and regulations are subject to change and can vary significantly between jurisdictions.
+                        </p>
+                    </div>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                        <h4 class="font-bold text-xl mb-2 text-blue-900">Not Legal Advice</h4>
+                        <p class="leading-relaxed text-gray-700">
+                            The content of this website should not be interpreted as legal advice. For any specific legal concerns or
+                            queries regarding intellectual property matters in the Southern Philippines, it is imperative to seek
+                            professional advice from qualified legal practitioners with expertise in intellectual property law.
+                        </p>
+                    </div>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                        <h4 class="font-bold text-xl mb-2 text-blue-900">No Endorsement</h4>
+                        <p class="leading-relaxed text-gray-700">
+                            The presentation of this project idea does not constitute an endorsement or promotion of any specific course
+                            of action, products, or services related to intellectual property. Any references to third-party entities or
+                            organizations are purely for illustrative purposes and do not imply an endorsement or partnership.
+                        </p>
+                    </div>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                        <h4 class="font-bold text-xl mb-2 text-blue-900">Rights and Responsibilities</h4>
+                        <p class="leading-relaxed text-gray-700">
+                            Any potential actions or initiatives taken based on this website are the responsibility of the relevant
+                            stakeholders or parties involved. I disclaim any liability for actions taken or decisions made in response
+                            to the information provided herein.
+                        </p>
+                    </div>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                        <h4 class="font-bold text-xl mb-2 text-blue-900">Confidentiality</h4>
+                        <p class="leading-relaxed text-gray-700">
+                            The contents of this website are not confidential and may be shared publicly or with relevant parties for
+                            discussions and collaborations related to intellectual property matters in the Southern Philippines.
+                        </p>
+                    </div>
+
+                    <p class="leading-relaxed">
+                        In conclusion, I reiterate that this project idea is purely informational and does not constitute legal advice
+                        or official policy. It is essential to conduct thorough research, seek expert advice, and comply with relevant
+                        laws and regulations when undertaking any initiatives related to intellectual property in the Southern Philippines
+                        or elsewhere.
+                    </p>
+
+                    <p class="leading-relaxed">
+                        <strong>Sincerely,</strong><br>
+                        Pehin Seri Diraja Dato Seri Farid Ibrahim
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="/assets/spda_logo.png" alt="SPDA Logo" class="h-12 w-12">
+                        <h3 class="text-xl font-bold">SPDA Special Envoy</h3>
+                    </div>
+                    <p class="text-gray-400">
+                        Southern Philippines Development Administration
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#message" class="text-gray-400 hover:text-white transition-colors">Message</a></li>
+                        <li><a href="#news" class="text-gray-400 hover:text-white transition-colors">News</a></li>
+                        <li><a href="#advocacy" class="text-gray-400 hover:text-white transition-colors">Advocacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-gray-400 mt-1"></i>
+                            <span class="text-gray-400">For inquiries, please contact SPDA</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-gray-400 mt-1"></i>
+                            <span class="text-gray-400">Southern Philippines</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 SPDA Special Envoy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Mobile projects dropdown toggle
+        const mobileProjectsBtn = document.getElementById('mobile-projects-btn');
+        const mobileProjectsDropdown = document.getElementById('mobile-projects-dropdown');
+        const mobileProjectsIcon = document.getElementById('mobile-projects-icon');
+
+        mobileProjectsBtn.addEventListener('click', () => {
+            mobileProjectsDropdown.classList.toggle('hidden');
+            mobileProjectsIcon.classList.toggle('rotate-180');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+
+        // Fade in elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in-element items
+        document.querySelectorAll('.fade-in-element').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Also observe section children for fade-in
+        document.querySelectorAll('section > div').forEach(el => {
+            if (!el.classList.contains('fade-in-element')) {
+                el.classList.add('fade-in-element');
+                observer.observe(el);
+            }
+        });
+
+        // Video Modal Functions
+        function openVideoModal(url) {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            iframe.src = url;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            lucide.createIcons();
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const iframe = document.getElementById('video-iframe');
+            iframe.src = '';
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+
+        // Close modal on background click
+        document.getElementById('video-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'video-modal') {
+                closeVideoModal();
+            }
+        });
+
+        // Load News
+        fetch('/api/news.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('news-container');
+                data.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'relative group cursor-pointer card-hover overflow-hidden rounded-xl shadow-lg';
+                    div.style.minHeight = '300px';
+                    div.style.backgroundImage = `url(/assets/news/n${index + 1}.png)`;
+                    div.style.backgroundSize = 'cover';
+                    div.style.backgroundPosition = 'center';
+
+                    // Create onclick handler
+                    if (item.onclick.includes('modalVideo')) {
+                        const urlMatch = item.onclick.match(/https:\/\/[^'")]+/);
+                        if (urlMatch) {
+                            div.onclick = () => openVideoModal(urlMatch[0]);
+                        }
+                    } else if (item.onclick.includes('window.open')) {
+                        const urlMatch = item.onclick.match(/https:\/\/[^'")]+/);
+                        if (urlMatch) {
+                            div.onclick = () => window.open(urlMatch[0]);
+                        }
+                    }
+
+                    const overlay = document.createElement('div');
+                    overlay.className = 'absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-end p-6';
+
+                    const title = document.createElement('h3');
+                    title.className = 'text-white font-semibold text-lg leading-tight';
+                    title.innerHTML = item.title;
+
+                    overlay.appendChild(title);
+                    div.appendChild(overlay);
+                    container.appendChild(div);
+                });
+            })
+            .catch(err => console.log('Error loading news:', err));
+
+        // Load Advocacy
+        fetch('/api/advocacy.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('advocacy-container');
+                data.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'relative group cursor-pointer card-hover overflow-hidden rounded-xl shadow-lg';
+                    div.style.minHeight = '300px';
+                    div.style.backgroundImage = `url(/assets/advocacy/a${index + 1}.png)`;
+                    div.style.backgroundSize = 'cover';
+                    div.style.backgroundPosition = 'center';
+
+                    // Create onclick handler
+                    if (item.onclick.includes('modalVideo')) {
+                        const urlMatch = item.onclick.match(/https:\/\/[^'")]+/);
+                        if (urlMatch) {
+                            div.onclick = () => openVideoModal(urlMatch[0]);
+                        }
+                    }
+
+                    const overlay = document.createElement('div');
+                    overlay.className = 'absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-end p-6';
+
+                    const title = document.createElement('h3');
+                    title.className = 'text-white font-semibold text-lg leading-tight';
+                    title.innerHTML = item.title;
+
+                    overlay.appendChild(title);
+                    div.appendChild(overlay);
+                    container.appendChild(div);
+                });
+            })
+            .catch(err => console.log('Error loading advocacy:', err));
+
+        // Load Projects
+        fetch('/api/projects.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('projects-container');
+                const desktopDropdown = document.getElementById('projects-dropdown');
+                const mobileDropdown = document.getElementById('mobile-projects-dropdown');
+
+                data.forEach(item => {
+                    // Create grid item for projects section
+                    const div = document.createElement('div');
+                    div.className = 'relative group cursor-pointer card-hover overflow-hidden rounded-xl shadow-md bg-white';
+
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'aspect-square overflow-hidden bg-gray-100';
+
+                    const img = document.createElement('img');
+                    img.src = `/assets/projects/${item.title.toLowerCase()}.png`;
+                    img.alt = item.title;
+                    img.className = 'w-full h-full object-cover group-hover:scale-110 transition-transform duration-300';
+                    img.onerror = function() {
+                        this.src = '/assets/placeholder-image.jpg';
+                    };
+
+                    const title = document.createElement('div');
+                    title.className = 'p-4 text-center';
+                    const titleText = document.createElement('h3');
+                    titleText.className = 'font-semibold text-sm text-gray-800';
+                    titleText.textContent = item.title;
+
+                    imgContainer.appendChild(img);
+                    title.appendChild(titleText);
+                    div.appendChild(imgContainer);
+                    div.appendChild(title);
+                    container.appendChild(div);
+
+                    // Create desktop dropdown link
+                    const desktopLink = document.createElement('a');
+                    desktopLink.href = `/projects/${item.title.toLowerCase().replace(/\s+/g, '-')}.html`;
+                    desktopLink.className = 'block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors';
+                    desktopLink.textContent = item.title;
+                    desktopDropdown.appendChild(desktopLink);
+
+                    // Create mobile dropdown link
+                    const mobileLink = document.createElement('a');
+                    mobileLink.href = `/projects/${item.title.toLowerCase().replace(/\s+/g, '-')}.html`;
+                    mobileLink.className = 'block text-sm text-gray-600 hover:text-blue-600 transition-colors';
+                    mobileLink.textContent = item.title;
+                    mobileDropdown.appendChild(mobileLink);
+                });
+
+                // Reinitialize Lucide icons for the chevron
+                lucide.createIcons();
+            })
+            .catch(err => console.log('Error loading projects:', err));
+    </script>
+</body>
 </html>

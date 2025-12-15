@@ -1,360 +1,219 @@
-
 <!DOCTYPE html>
-<html style="font-size: 16px;" lang="en"><head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="Gallery">
-    <meta name="description" content="">
-    <title>Gallery</title>
-    <link rel="stylesheet" href="/css/nicepage.css">
-    <link rel="stylesheet" href="/css/topnav.css">
-    <link rel="stylesheet" href="/css/gallery.css">
-    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
-    <script language="JavaScript" type="text/javascript" src="/js/jquery.js"></script>
-    <script language="JavaScript" type="text/javascript" src="/js/jquery-ui.js"></script>
-    <meta name="generator" content="Nicepage 5.13.1, nicepage.com">
-    <link rel="icon" type="image/png" href="/assets/spda_logo.png">
-    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i">
-    <meta name="theme-color" content="#ffffff">
-    <meta property="og:title" content="SPDA Special Envoy > Gallery">
-    <meta property="og:description" content="View the gallery">
-    <meta property="og:type" content="website">
-    <meta data-intl-tel-input-cdn-path="intlTelInput/">
-  </head>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery - SPDA Special Envoy</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/assets/spda_logo.png">
+<style>
+body{font-family:Inter,sans-serif}
+.smooth-scroll{scroll-behavior:smooth}
+.gallery-item{transition:transform .3s ease,opacity .3s ease}
+.gallery-item:hover{transform:scale(1.05);opacity:.9}
+</style>
+</head>
+<body class="bg-white text-gray-900 smooth-scroll">
+<div id="lightbox" class="fixed inset-0 bg-black/95 z-[100] hidden items-center justify-center p-4">
+<button onclick="closeLightbox()" type="button" aria-label="Close lightbox" class="absolute top-4 right-4 z-10 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-colors">
+<i data-lucide="x" class="w-6 h-6 text-white"></i>
+</button>
+<button onclick="previousMedia()" type="button" aria-label="Previous media" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-colors">
+<i data-lucide="chevron-left" class="w-6 h-6 text-white"></i>
+</button>
+<button onclick="nextMedia()" type="button" aria-label="Next media" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full backdrop-blur-sm transition-colors">
+<i data-lucide="chevron-right" class="w-6 h-6 text-white"></i>
+</button>
+<div class="relative max-w-7xl max-h-full">
+<img id="lightbox-img" src="" alt="Gallery Image" class="max-w-full max-h-[90vh] object-contain rounded-lg hidden">
+<video id="lightbox-video" controls class="max-w-full max-h-[90vh] object-contain rounded-lg hidden">
+<source src="" type="video/mp4">
+</video>
+<div id="lightbox-caption" class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 backdrop-blur-sm px-6 py-3 rounded-full text-white text-sm"></div>
+</div>
+</div>
+<nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center space-x-3">
+<img src="/assets/spda_logo.png" alt="SPDA Logo" class="h-10 w-10">
+<span class="font-semibold text-lg">SPDA Special Envoy</span>
+</div>
+<a href="/" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+<i data-lucide="arrow-left" class="w-4 h-4 inline mr-1"></i> Back to Home
+</a>
+</div>
+</div>
+</nav>
+<section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
+<div class="max-w-7xl mx-auto text-center">
+<h1 class="text-5xl md:text-6xl font-bold mb-6">Gallery</h1>
+<div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+<p class="text-xl text-gray-600 max-w-3xl mx-auto">Moments and milestones from SPDA Special Envoy activities and events</p>
+</div>
+</section>
+<section class="py-16 px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="gallery-container"></div>
+</div>
+</section>
+<footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto text-center">
+<div class="flex items-center justify-center space-x-3 mb-4">
+<img src="/assets/spda_logo.png" alt="SPDA Logo" class="h-12 w-12">
+<h3 class="text-xl font-bold">SPDA Special Envoy</h3>
+</div>
+<p class="text-gray-400 mb-4">Southern Philippines Development Administration</p>
+<div class="border-t border-gray-800 pt-6 text-gray-400">
+<p>&copy; 2025 SPDA Special Envoy. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+lucide.createIcons();
+let currentMediaIndex=0;
+let galleryMedia=[];
+const container=document.getElementById("gallery-container");
 
-  <body class="u-body u-xl-mode" data-lang="en">
-    <div class="topnav"></div>
-    <header class="u-clearfix u-header u-palette-5-dark-3 u-header" id="sec-9d56" style="background-color: black;"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-    <section class="u-align-center u-clearfix u-section-1" id="sec-fb35" style="background-color: black;">
-      <div class="u-clearfix u-sheet u-valign-bottom u-sheet-1" style="min-height: 0;">
-        <h2 class="u-text u-text-default u-text-1" style="color: white; margin-top: 140px;">Gallery</h2>
-        <p class="u-text u-text-2" style="color: white;">Our gallery</p>
-        <div class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1" style="margin-top: 40px;">
-          <div class="u-gallery-inner u-gallery-inner-1">
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-1">
-              <div class="u-back-slide u-back-slide-1" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/1.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-1"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-2">
-              <div class="u-back-slide u-back-slide-2" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/2.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-2"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-3">
-              <div class="u-back-slide u-back-slide-3" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/3.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-3"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-4">
-              <div class="u-back-slide u-back-slide-4" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/4.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-4"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-5">
-              <div class="u-back-slide u-back-slide-5" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/5.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-5"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-6">
-              <div class="u-back-slide u-back-slide-6" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/6.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-6"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-7">
-              <div class="u-back-slide u-back-slide-7" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/7.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-7"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-8">
-              <div class="u-back-slide u-back-slide-8" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/8.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-8"></div>
-            </div>
-          </div>
-        </div>
-        <div class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-2">
-          <div class="u-gallery-inner u-gallery-inner-2">
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-9">
-              <div class="u-back-slide u-back-slide-9" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/9.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-9"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-10">
-              <div class="u-back-slide u-back-slide-10" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/10.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-10"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-11">
-              <div class="u-back-slide u-back-slide-11" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/12.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-11"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-12">
-              <div class="u-back-slide u-back-slide-12" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/13.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-12"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-13">
-              <div class="u-back-slide u-back-slide-13" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/14.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-13"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-14">
-              <div class="u-back-slide u-back-slide-14" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/15.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-14"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-15">
-              <div class="u-back-slide u-back-slide-15" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/16.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-15"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-16">
-              <div class="u-back-slide u-back-slide-16" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/11.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-16"></div>
-            </div>
-          </div>
-        </div>
-        <div class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-3">
-          <div class="u-gallery-inner u-gallery-inner-3">
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-17">
-              <div class="u-back-slide u-back-slide-17" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/17.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-17"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-18">
-              <div class="u-back-slide u-back-slide-18" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/18.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-18"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-19">
-              <div class="u-back-slide u-back-slide-19" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/19.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-19"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-20">
-              <div class="u-back-slide u-back-slide-20" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/20.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-20"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-21">
-              <div class="u-back-slide u-back-slide-21" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/21.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-21"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-22">
-              <div class="u-back-slide u-back-slide-22" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/22.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-22"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-23">
-              <div class="u-back-slide u-back-slide-23" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/23.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-23"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-24">
-              <div class="u-back-slide u-back-slide-24" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/24.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-24"></div>
-            </div>
-          </div>
-        </div>
-        <div class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-4">
-          <div class="u-gallery-inner u-gallery-inner-4">
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-25">
-              <div class="u-back-slide u-back-slide-25" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/25.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-25"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-26">
-              <div class="u-back-slide u-back-slide-26" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/26.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-26"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-27">
-              <div class="u-back-slide u-back-slide-27" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/27.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-27"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-28">
-              <div class="u-back-slide u-back-slide-28" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/28.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-28"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-29">
-              <div class="u-back-slide u-back-slide-29" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/29.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-29"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-30">
-              <div class="u-back-slide u-back-slide-30" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/30.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-30"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-31">
-              <div class="u-back-slide u-back-slide-31" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/31.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-31"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-32">
-              <div class="u-back-slide u-back-slide-32" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/32.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-32"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="u-clearfix u-section-2" id="sec-f989">
-      <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1">
-          <div class="u-gallery-inner u-gallery-inner-1">
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-1">
-              <div class="u-back-slide u-back-slide-1" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/33.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-1"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-2">
-              <div class="u-back-slide u-back-slide-2" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/34.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-2"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-3">
-              <div class="u-back-slide u-back-slide-3" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/35.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-3"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-4">
-              <div class="u-back-slide u-back-slide-4" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/36.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-4"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-5">
-              <div class="u-back-slide u-back-slide-5" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/37.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-5"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-6">
-              <div class="u-back-slide u-back-slide-6" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/38.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-6"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-7">
-              <div class="u-back-slide u-back-slide-7" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/39.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-7"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-8">
-              <div class="u-back-slide u-back-slide-8" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/40.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-8"></div>
-            </div>
-          </div>
-        </div>
-        <div class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-2">
-          <div class="u-gallery-inner u-gallery-inner-2">
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-9">
-              <div class="u-back-slide u-back-slide-9" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/41.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-9"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-10">
-              <div class="u-back-slide u-back-slide-10" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/42.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-10"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-11">
-              <div class="u-back-slide u-back-slide-11" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/43.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-11"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-12">
-              <div class="u-back-slide u-back-slide-12" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/44.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-12"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-13">
-              <div class="u-back-slide u-back-slide-13" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/45.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-13"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-14">
-              <div class="u-back-slide u-back-slide-14" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/46.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-14"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-15">
-              <div class="u-back-slide u-back-slide-15" data-image-width="660" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/47.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-15"></div>
-            </div>
-            <div class="u-effect-fade u-effect-hover-zoom u-gallery-item u-gallery-item-16">
-              <div class="u-back-slide u-back-slide-16" data-image-width="1173" data-image-height="880">
-                <img class="u-back-image u-expanded" src="/assets/gallery/48.jpg">
-              </div>
-              <div class="u-over-slide u-shading u-over-slide-16"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <canvas id="stars" style="position: absolute; z-index: 999; width: 0;"></canvas>
-    <div id="particles-js"></div>
-    <canvas id="stars" style="position: absolute; top: 100vw; z-index: 999; width: 0;"></canvas>
-    <div id="particles-js"></div>
-    <canvas id="stars" style="position: absolute; z-index: 999; width: 0;"></canvas>
-    <div id="particles-js"></div>
+// Old numbered images (1-80)
+for(let i=1;i<=80;i++){
+    galleryMedia.push({type:'image',path:"/assets/gallery/"+i+".jpg",name:"Gallery Image "+i});
+}
 
-    <script src="/js/main.js"></script>
-    <script src="/js/stars.js"></script>
-</body></html>
+// New WhatsApp images
+const whatsappImages=[
+    "WhatsApp Image 2025-12-15 at 13.33.00_88f26d5f.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.01_28a31716.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.10_8f3ca7ef.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.11_f789d363.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.12_296304ef.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.12_484d098e.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.45_9cb83ddb.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.46_d11a8eb3.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.46_e553b43a.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.48_e428e182.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.50_ffc5a215.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.51_50c1f56c.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.51_e55e6c8a.jpg",
+    "WhatsApp Image 2025-12-15 at 13.33.52_c3f0092b.jpg"
+];
+
+// New WhatsApp videos
+const whatsappVideos=[
+    "WhatsApp Video 2025-12-15 at 13.33.10_82fcbf9b.mp4",
+    "WhatsApp Video 2025-12-15 at 13.33.11_224e58c9.mp4",
+    "WhatsApp Video 2025-12-15 at 13.33.45_9612daa5.mp4",
+    "WhatsApp Video 2025-12-15 at 13.33.46_0af8b0af.mp4",
+    "WhatsApp Video 2025-12-15 at 13.33.47_139ca4af.mp4",
+    "WhatsApp Video 2025-12-15 at 13.33.49_e8527847.mp4",
+    "WhatsApp Video 2025-12-15 at 13.33.50_2b8a0341.mp4"
+];
+
+whatsappImages.forEach(img=>{
+    galleryMedia.push({type:'image',path:"/assets/gallery/"+img,name:img});
+});
+
+whatsappVideos.forEach(vid=>{
+    galleryMedia.push({type:'video',path:"/assets/gallery/"+vid,name:vid});
+});
+
+// Render gallery
+galleryMedia.forEach((media,index)=>{
+    const div=document.createElement("div");
+    div.className="gallery-item cursor-pointer overflow-hidden rounded-xl shadow-lg bg-gray-100 aspect-square relative";
+
+    if(media.type==='image'){
+        const img=document.createElement("img");
+        img.src=media.path;
+        img.alt=media.name;
+        img.className="w-full h-full object-cover";
+        img.loading="lazy";
+        img.onerror=function(){this.parentElement.style.display="none"};
+        div.appendChild(img);
+    }else{
+        const video=document.createElement("video");
+        video.src=media.path;
+        video.className="w-full h-full object-cover";
+        video.muted=true;
+        video.onerror=function(){this.parentElement.style.display="none"};
+
+        const playIcon=document.createElement("div");
+        playIcon.className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none";
+        playIcon.innerHTML='<div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center"><i data-lucide="play" class="w-8 h-8 text-gray-900"></i></div>';
+
+        div.appendChild(video);
+        div.appendChild(playIcon);
+    }
+
+    div.onclick=()=>openLightbox(index);
+    container.appendChild(div);
+});
+
+lucide.createIcons();
+
+function openLightbox(index){
+    currentMediaIndex=index;
+    const lightbox=document.getElementById("lightbox");
+    const img=document.getElementById("lightbox-img");
+    const video=document.getElementById("lightbox-video");
+    const caption=document.getElementById("lightbox-caption");
+    const media=galleryMedia[index];
+
+    if(media.type==='image'){
+        img.src=media.path;
+        img.classList.remove("hidden");
+        video.classList.add("hidden");
+        video.pause();
+    }else{
+        video.querySelector("source").src=media.path;
+        video.load();
+        video.classList.remove("hidden");
+        img.classList.add("hidden");
+    }
+
+    caption.textContent=(index+1)+" of "+galleryMedia.length;
+    lightbox.classList.remove("hidden");
+    lightbox.classList.add("flex");
+    document.body.style.overflow="hidden";
+    lucide.createIcons();
+}
+
+function closeLightbox(){
+    const lightbox=document.getElementById("lightbox");
+    const video=document.getElementById("lightbox-video");
+    video.pause();
+    lightbox.classList.add("hidden");
+    lightbox.classList.remove("flex");
+    document.body.style.overflow="auto";
+}
+
+function nextMedia(){
+    currentMediaIndex=(currentMediaIndex+1)%galleryMedia.length;
+    openLightbox(currentMediaIndex);
+}
+
+function previousMedia(){
+    currentMediaIndex=(currentMediaIndex-1+galleryMedia.length)%galleryMedia.length;
+    openLightbox(currentMediaIndex);
+}
+
+document.addEventListener("keydown",e=>{
+    const lightbox=document.getElementById("lightbox");
+    if(!lightbox.classList.contains("hidden")){
+        if(e.key==="Escape")closeLightbox();
+        if(e.key==="ArrowRight")nextMedia();
+        if(e.key==="ArrowLeft")previousMedia();
+    }
+});
+
+document.getElementById("lightbox").addEventListener("click",e=>{
+    if(e.target.id==="lightbox"){
+        closeLightbox();
+    }
+});
+</script>
+</body>
+</html>
