@@ -78,6 +78,19 @@
         </div>
     </div>
 
+    <!-- QR Code for Mobile Access -->
+    <div class="fixed bottom-6 right-6 z-40 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-4 border border-gray-200 hidden md:block">
+        <div class="text-center mb-2">
+            <p class="text-xs font-semibold text-gray-700">Scan to visit</p>
+        </div>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://spda-specialenvoy.org"
+             alt="QR Code"
+             class="w-[120px] h-[120px] rounded-lg">
+        <div class="text-center mt-2">
+            <p class="text-[10px] text-gray-500">spda-specialenvoy.org</p>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -723,6 +736,9 @@
                     div.appendChild(imgContainer);
                     div.appendChild(title);
                     container.appendChild(div);
+
+                    // Make grid item clickable
+                    div.onclick = () => window.location.href = `/projects/${item.title.toLowerCase().replace(/\s+/g, '-')}.html`;
 
                     // Create desktop dropdown link
                     const desktopLink = document.createElement('a');

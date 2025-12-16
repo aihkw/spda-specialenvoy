@@ -38,5 +38,9 @@
     {
         "title": "Silverbear Capital: Perspective on investing in Asia | Peter Chun, Managing Partner",
         "onclick": "modalVideo('https://www.youtube.com/embed/t--BS-7rbk0', 'Silverbear Capital: Perspective on investing in Asia | Peter Chun, Managing Partner')"
+    },
+    {
+        "title": "Philippine President Marcos vows to work with China to manage differences",
+        "onclick": "window.open('https://www.thestar.com.my/aseanplus/aseanplus-news/2025/12/13/philippine-president-marcos-vows-to-work-with-china-to-manage-differences')"
     }
 ]
