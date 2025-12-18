@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(for file in *.html)",
+      "Bash(do if ! grep -q \"text-align: justify\" \"$file\")",
+      "Bash(then sed -i 's/<style>body{font-family:Inter,sans-serif}<\\\\/style>/<style>body{font-family:Inter,sans-serif; text-align: justify;}<\\\\/style>/' \"$file\")",
+      "Bash(echo:*)",
+      "Bash(fi)",
+      "Bash(done)",
+      "Bash(for file in agriculture.html power.html infrastructure.html education.html public-utilities.html housing.html land-development.html manufacturing.html natural-resources.html financial-hub.html fintech.html tourism.html)",
+      "Bash(do sed -i 's/<style>body{font-family:Inter,sans-serif}<\\\\/style>/<style>body{font-family:Inter,sans-serif; text-align: justify;}<\\\\/style>/' \"$file\")",
+      "Bash(ls:*)"
     ]
   }
 }

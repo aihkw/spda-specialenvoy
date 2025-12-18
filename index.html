@@ -187,6 +187,9 @@
                             <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
                         </a>
                     </div>
+                    <div class="mt-6">
+                        <img src="https://hits.sh/spda-specialenvoy.org.svg?style=flat&label=Visits:&color=1e40af&labelColor=1e40af&extraCount=2384" alt="Visit counter" class="h-10 shadow-lg">
+                    </div>
                 </div>
                 <div class="flex justify-center items-center space-x-6 fade-in-element">
                     <img src="/assets/spda_logo.png" alt="SPDA Logo" class="w-48 h-48 object-contain rounded-2xl shadow-2xl">
@@ -200,7 +203,7 @@
     <section id="message" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Special Envoy</h2>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Special Envoy for Trade & Investment</h2>
                 <div class="w-24 h-1 bg-blue-600 mx-auto"></div>
             </div>
 
@@ -507,11 +510,11 @@
                     <h4 class="text-lg font-semibold mb-4">Contact</h4>
                     <div class="space-y-3">
                         <div class="flex items-start space-x-3">
-                            <i data-lucide="mail" class="w-5 h-5 text-gray-400 mt-1"></i>
-                            <span class="text-gray-400">For inquiries, please contact SPDA</span>
+                            <i data-lucide="mail" class="w-5 h-5 text-gray-400 mt-1 flex-shrink-0"></i>
+                            <a href="mailto:psdfarid@spda-specialenvoy.org" class="text-gray-400 hover:text-white transition-colors break-all">psdfarid@spda-specialenvoy.org</a>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <i data-lucide="map-pin" class="w-5 h-5 text-gray-400 mt-1"></i>
+                            <i data-lucide="map-pin" class="w-5 h-5 text-gray-400 mt-1 flex-shrink-0"></i>
                             <span class="text-gray-400">Southern Philippines</span>
                         </div>
                     </div>
@@ -729,7 +732,18 @@
                     imgContainer.className = 'aspect-square overflow-hidden bg-gray-100';
 
                     const img = document.createElement('img');
-                    img.src = `/assets/projects/${item.title.toLowerCase()}.png`;
+                    // Special handling for image file names
+                    let imageName = item.title.toLowerCase();
+                    let imageExt = '.png';
+
+                    if (item.title === 'Medical & Healthcare') {
+                        imageName = 'medical_healthcare';
+                        imageExt = '.jpg';
+                    } else if (item.title === 'Technology') {
+                        imageExt = '.jpg';
+                    }
+
+                    img.src = `/assets/projects/${imageName}${imageExt}`;
                     img.alt = item.title;
                     img.className = 'w-full h-full object-cover group-hover:scale-110 transition-transform duration-300';
                     img.onerror = function() {
@@ -748,19 +762,22 @@
                     div.appendChild(title);
                     container.appendChild(div);
 
+                    // Generate URL-friendly filename (convert & to and, spaces to dashes)
+                    const pageUrl = `/projects/${item.title.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}.html`;
+
                     // Make grid item clickable
-                    div.onclick = () => window.location.href = `/projects/${item.title.toLowerCase().replace(/\s+/g, '-')}.html`;
+                    div.onclick = () => window.location.href = pageUrl;
 
                     // Create desktop dropdown link
                     const desktopLink = document.createElement('a');
-                    desktopLink.href = `/projects/${item.title.toLowerCase().replace(/\s+/g, '-')}.html`;
+                    desktopLink.href = pageUrl;
                     desktopLink.className = 'block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors';
                     desktopLink.textContent = item.title;
                     desktopDropdown.appendChild(desktopLink);
 
                     // Create mobile dropdown link
                     const mobileLink = document.createElement('a');
-                    mobileLink.href = `/projects/${item.title.toLowerCase().replace(/\s+/g, '-')}.html`;
+                    mobileLink.href = pageUrl;
                     mobileLink.className = 'block text-sm text-gray-600 hover:text-blue-600 transition-colors';
                     mobileLink.textContent = item.title;
                     mobileDropdown.appendChild(mobileLink);
