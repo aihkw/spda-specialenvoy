@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPDA Special Envoy - Company Profile Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/assets/spda_logo.png">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+}
+
+.page {
+    width: 297mm;
+    height: 210mm;
+    margin: 0 auto 20px;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cover Page */
+.cover-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 0;
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+    background: linear-gradient(135deg, rgba(0,40,104,0.85) 0%, rgba(206,17,38,0.80) 100%);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.cover-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.cover-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,40,104,0.85) 0%, rgba(206,17,38,0.80) 100%);
+    z-index: 1;
+}
+
+.cover-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.05) 49%, rgba(255,255,255,0.05) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.05) 49%, rgba(255,255,255,0.05) 51%, transparent 52%);
+    background-size: 100px 100px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.cover-logo {
+    width: 130px;
+    height: 130px;
+    background: white;
+    border-radius: 50%;
+    padding: 18px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.cover-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.envoy-photo {
+    width: 220px;
+    height: 280px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.cover-content {
+    position: relative;
+    z-index: 3;
+}
+
+.cover-title {
+    font-size: 44px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    color: white;
+}
+
+.cover-subtitle {
+    font-size: 26px;
+    font-weight: 300;
+    margin-bottom: 25px;
+    opacity: 0.95;
+    color: white;
+}
+
+.cover-date {
+    font-size: 17px;
+    font-weight: 500;
+    opacity: 0.9;
+    color: white;
+    margin-top: 15px;
+}
+
+/* Content Pages */
+.content-page {
+    padding: 35px 50px;
+}
+
+.page-header {
+    border-bottom: 3px solid #2563eb;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.page-number {
+    position: absolute;
+    bottom: 30px;
+    right: 60px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* Executive Summary Page */
+.executive-content {
+    font-size: 12pt;
+    line-height: 1.7;
+    color: #374151;
+    text-align: justify;
+}
+
+.executive-content p {
+    margin-bottom: 15px;
+}
+
+.highlight-box {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    padding: 18px;
+    margin: 18px 0;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Special Envoy Page */
+.envoy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.envoy-image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.envoy-info {
+    padding: 20px;
+}
+
+.envoy-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+}
+
+.envoy-title {
+    font-size: 14px;
+    color: #2563eb;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.envoy-note {
+    background: #dbeafe;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #1e40af;
+    margin-bottom: 20px;
+}
+
+.envoy-description {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #4b5563;
+    text-align: justify;
+}
+
+/* Vision & Mission Page */
+.mission-quote {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 10px 40px rgba(37,99,235,0.3);
+}
+
+.quote-text {
+    font-size: 15px;
+    line-height: 1.6;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 18px;
+}
+
+.quote-author {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.mission-text {
+    font-size: 12pt;
+    line-height: 1.7;
+    color: #374151;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+/* Mandate Page */
+.mandate-section {
+    margin-bottom: 18px;
+}
+
+.mandate-number {
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    background: #2563eb;
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 38px;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.mandate-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 8px;
+}
+
+.mandate-text {
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #4b5563;
+    text-align: justify;
+}
+
+.mandate-objectives {
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.mandate-objectives div {
+    margin-bottom: 8px;
+    font-size: 10.5pt;
+}
+
+.mandate-objectives strong {
+    color: #1e40af;
+}
+
+/* Projects Overview Page */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #93c5fd;
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #1e40af;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #4b5563;
+    font-weight: 600;
+}
+
+/* Project Page */
+.project-page {
+    padding: 30px 45px;
+}
+
+.project-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #2563eb;
+}
+
+.project-number-badge {
+    background: #2563eb;
+    color: white;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.project-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.project-content {
+    font-size: 11pt;
+    line-height: 1.6;
+    color: #374151;
+    text-align: justify;
+    margin-bottom: 18px;
+}
+
+.project-focus {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #2563eb;
+}
+
+.focus-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e40af;
+    margin-bottom: 10px;
+}
+
+.focus-list {
+    list-style: none;
+    padding: 0;
+}
+
+.focus-item {
+    padding-left: 18px;
+    margin-bottom: 6px;
+    font-size: 10.5pt;
+    color: #4b5563;
+    position: relative;
+}
+
+.focus-item:before {
+    content: "●";
+    position: absolute;
+    left: 0;
+    color: #2563eb;
+    font-size: 14px;
+}
+
+/* Print Button */
+.print-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 30px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37,99,235,0.3);
+    z-index: 1000;
+    transition: all 0.3s;
+}
+
+.print-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37,99,235,0.4);
+}
+
+@media print {
+    body {
+        padding: 0;
+        background: white;
+    }
+
+    .page {
+        margin: 0;
+        box-shadow: none;
+        width: 100%;
+        height: 100%;
+        page-break-after: always;
+    }
+
+    .print-button {
+        display: none;
+    }
+
+    .cover-page {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        background: linear-gradient(135deg, rgba(0,40,104,0.95) 0%, rgba(206,17,38,0.90) 100%) !important;
+    }
+
+    .cover-video {
+        display: none !important;
+    }
+
+    .cover-overlay {
+        display: none !important;
+    }
+
+    .cover-page::before {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .cover-title, .cover-subtitle, .cover-date {
+        color: white !important;
+    }
+
+    .envoy-photo {
+        border-color: white !important;
+    }
+
+    @page {
+        size: A4 landscape;
+        margin: 0;
+    }
+
+    @page :first {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .page {
+        width: 100%;
+        height: auto;
+        min-height: 210mm;
+    }
+
+    .envoy-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<button type="button" class="print-button" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+<!-- COVER PAGE -->
+<div class="page cover-page">
+    <!-- Video Background -->
+    <video autoplay muted loop playsinline class="cover-video">
+        <source src="/assets/phbg.mp4" type="video/mp4">
+    </video>
+
+    <!-- Gradient Overlay -->
+    <div class="cover-overlay"></div>
+
+    <div class="cover-content">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 30px; margin-bottom: 20px;">
+            <div class="cover-logo">
+                <img src="/assets/spda_logo.png" alt="SPDA Logo">
+            </div>
+            <div class="cover-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Flag_of_the_Philippines.svg" alt="Philippines Flag" style="border-radius: 8px;">
+            </div>
+        </div>
+
+        <h1 class="cover-title">SPDA Special Envoy</h1>
+        <h2 class="cover-subtitle">SPDA Profile & Development Portfolio</h2>
+
+        <img src="/assets/dsfi_reappointed.jpg" alt="H.E. Pehin Seri Diraja Dato' Seri Farid Ibrahim - Reappointment" class="envoy-photo" onerror="this.src='/assets/dsfi_otptp.jpeg'">
+
+        <div style="margin-top: 15px;">
+            <p style="font-size: 19px; font-weight: 600; margin-bottom: 6px;">H.E. PEHIN SERI DIRAJA DATO' SERI FARID IBRAHIM</p>
+            <p style="font-size: 15px; opacity: 0.9; margin-bottom: 0;">Special Envoy for Trade & Investment</p>
+        </div>
+
+        <p class="cover-date">Southern Philippines Development Authority | 2025</p>
+    </div>
+</div>
+
+<!-- EXECUTIVE SUMMARY PAGE -->
+<div class="page content-page">
+    <div class="page-header">
+        <h2 class="page-title">Executive Summary</h2>
+    </div>
+    <div class="executive-content">
+        <p>
+            The Southern Philippines Development Authority (SPDA) Special Envoy represents a cornerstone initiative in advancing economic development,
+            infrastructure modernization, and inclusive prosperity across Mindanao and the Sulu archipelago. Established under Presidential Decree,
+            SPDA serves as the unified responsive agency responsible for fostering balanced growth and democratizing opportunities throughout the
+            Southern Philippines.
+        </p>
+        <div class="highlight-box">
+            <p style="margin-bottom: 0; font-weight: 600; color: #1e40af;">
+                Under the leadership of Honorary Administrator Gerry A. Salapuddin & H.E. Pehin Seri Diraja Dato' Seri Farid Ibrahim, serving as Special Envoy for Trade & Investment,
+                SPDA has undertaken comprehensive development initiatives spanning 15 critical sectors—transforming the region into a competitive,
+                sustainable, and prosperous hub within Southeast Asia.
+            </p>
+        </div>
+        <p>
+            These strategic development projects address fundamental challenges in agriculture, infrastructure, education, healthcare, energy,
+            and technology while unlocking unprecedented opportunities for inclusive growth. Each initiative reflects SPDA's commitment to
+            empowering communities, bridging regional divides, and ensuring that the benefits of development reach every corner of the
+            Southern Philippines.
+        </p>
+        <p>
+            This comprehensive profile presents SPDA's mandate, strategic vision, and detailed overview of all 15 development sectors,
+            demonstrating our commitment to creating a brighter future where innovation, inclusiveness, and sustainable growth intertwine.
+        </p>
+    </div>
+    <div class="page-number">Page 1</div>
+</div>
+
+<!-- SPECIAL ENVOY PAGE -->
+<div class="page content-page">
+    <div class="page-header">
+        <h2 class="page-title">Special Envoy for Trade & Investment</h2>
+    </div>
+    <div class="envoy-grid">
+        <img src="/assets/dsfi_otptp.jpeg" alt="H.E. Pehin Seri Diraja Dato' Seri Farid Ibrahim" class="envoy-image" onerror="this.style.display='none'">
+        <div class="envoy-info">
+            <h3 class="envoy-name">H.E. PEHIN SERI DIRAJA<br>DATO' SERI FARID IBRAHIM</h3>
+            <p class="envoy-title">Special Envoy for Trade & Investment</p>
+            <div class="envoy-note">
+                Reappointed as Special Envoy by SPDA Administrator Hon. Abdulghani "Gerry" A. Salapuddin under the administration
+                of H.E. President Ferdinand "Bongbong" Marcos Jr.
+            </div>
+            <p class="envoy-description">
+                The Special Envoy serves as the principal representative for promoting development and prosperity in Mindanao and the Sulu archipelago,
+                working directly with government agencies, international organizations, and private sector partners to facilitate strategic investments
+                and development initiatives that transform the region's potential into tangible progress.
+            </p>
+        </div>
+    </div>
+    <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px;">
+        <p style="font-size: 11pt; line-height: 1.7; color: #4b5563; text-align: justify; margin: 0;">
+            Through strategic leadership and international engagement, the Special Envoy facilitates partnerships that bring investment,
+            technology, and expertise to the Southern Philippines, ensuring that development initiatives align with both regional needs
+            and global best practices.
+        </p>
+    </div>
+    <div class="page-number">Page 2</div>
+</div>
+
+<!-- VISION & MISSION PAGE -->
+<div class="page content-page">
+    <div class="page-header">
+        <h2 class="page-title">Vision & Mission</h2>
+    </div>
+    <div class="mission-quote">
+        <p class="quote-text">
+            "Advocacy for Southern Philippines' development is not merely a choice; it's a commitment to empower lives, bridge divides,
+            and unlock the region's true potential. Together, we can create a brighter future, where inclusiveness, innovation, and
+            sustainable growth intertwine, making the entire nation a beacon of progress in the region."
+        </p>
+        <p class="quote-author">— H.E. Pehin Seri Diraja Dato' Seri Farid Ibrahim</p>
+    </div>
+    <div class="mission-text">
+        <p style="margin-bottom: 15px;">
+            <strong style="color: #1e40af; font-size: 14px;">Our Mission</strong><br>
+            SPDA's mission centers on fostering balanced growth through activation of mass participation in development processes, democratization
+            of opportunities, and maximization of benefits in resource utilization—ensuring that economic transformation reaches every community
+            across the Southern Philippines.
+        </p>
+        <p style="margin-bottom: 15px;">
+            <strong style="color: #1e40af; font-size: 14px;">Our Vision</strong><br>
+            To position the Southern Philippines as a globally competitive, sustainable, and inclusive region where every community thrives,
+            contributing to national prosperity while preserving cultural heritage and environmental integrity.
+        </p>
+        <p>
+            <strong style="color: #1e40af; font-size: 14px;">Core Values</strong><br>
+            Inclusiveness • Innovation • Sustainability • Excellence • Integrity • Collaboration
+        </p>
+    </div>
+    <div class="page-number">Page 3</div>
+</div>
+
+<!-- MANDATE PAGE 1 -->
+<div class="page content-page">
+    <div class="page-header">
+        <h2 class="page-title">SPDA Mandate & Legal Framework</h2>
+    </div>
+    <div style="font-size: 11pt; line-height: 1.6; color: #4b5563; text-align: justify; margin-bottom: 20px;">
+        Established under Presidential Decree, the Southern Philippines Development Administration operates with a comprehensive mandate to
+        initiate and implement development projects across Mindanao and the Sulu archipelago.
+    </div>
+    <div class="mandate-section">
+        <div class="mandate-number">1</div>
+        <h3 class="mandate-title">Declaration of Policy</h3>
+        <p class="mandate-text">
+            It is hereby declared the policy of the Government to foster and accelerate the balanced growth of Mindanao and Sulu archipelago
+            within the context of national plans and policies, by the activation of mass participation in the processes of development to be
+            exercised through a unified responsive agency; democratization of opportunity for improvement and maximization of benefits in the
+            utilization and allocation of all the resources that may be available.
+        </p>
+    </div>
+    <div class="mandate-section">
+        <div class="mandate-number">2</div>
+        <h3 class="mandate-title">Creation of the Southern Philippines Development Administration</h3>
+        <p class="mandate-text">
+            There is hereby created a body corporate to be known as the Southern Philippines Development Administration, hereinafter referred
+            to as the "Administration" which shall be governed by the provisions of this Decree. Generally, the Administration shall be the
+            agency of the government which shall be responsible for the initiation and/or implementation of development projects in such areas
+            or fields where other government offices have not taken action or have failed as may be agreed upon between the office or agency
+            concerned and the Administration.
+        </p>
+    </div>
+    <div class="page-number">Page 4</div>
+</div>
+
+<!-- MANDATE PAGE 2 -->
+<div class="page content-page">
+    <div class="page-header">
+        <h2 class="page-title">Purposes and Objectives</h2>
+    </div>
+    <div class="mandate-section">
+        <div class="mandate-number">3</div>
+        <h3 class="mandate-title">Core Objectives</h3>
+        <p class="mandate-text" style="margin-bottom: 15px;">
+            The Administration shall have the following purposes and objectives:
+        </p>
+        <div class="mandate-objectives">
+            <div>
+                <strong>A. Development Projects:</strong>
+                <span style="color: #4b5563;"> Promote the development of Mindanao and Sulu archipelago by initiating and/or undertaking
+                by itself or otherwise, development and/or business projects in social and/or economic fields.</span>
+            </div>
+            <div>
+                <strong>B. Community Participation:</strong>
+                <span style="color: #4b5563;"> Generate and encourage mass active participation and cooperation of the members of national
+                cultural communities in its activities which shall comprise manpower development, provision of material, financial or technical
+                assistance; and initiation, development and/or implementation of projects.</span>
+            </div>
+            <div>
+                <strong>C. Community Life Promotion:</strong>
+                <span style="color: #4b5563;"> Initiate and undertake projects for the promotion of community life through organized social
+                or economic activities and institutionalized schemes of assistance and incentives.</span>
+            </div>
+            <div>
+                <strong>D. Investment and Development:</strong>
+                <span style="color: #4b5563;"> Make investments in any field that would enhance the socio-economic development of the region,
+                the uplift of living standards of the people and their socio-political stability.</span>
+            </div>
+        </div>
+    </div>
+    <div class="page-number">Page 5</div>
+</div>
+
+<!-- PROJECTS OVERVIEW PAGE -->
+<div class="page content-page">
+    <div class="page-header">
+        <h2 class="page-title">Strategic Development Projects</h2>
+    </div>
+    <div style="font-size: 11pt; line-height: 1.6; color: #4b5563; text-align: justify; margin-bottom: 20px;">
+        SPDA Special Envoy oversees 15 comprehensive development projects spanning critical sectors of the Southern Philippines economy.
+        Each project represents a strategic intervention designed to address specific challenges while unlocking the region's vast potential
+        for transformation and inclusive growth.
+    </div>
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">15</div>
+            <div class="stat-label">Development Sectors</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">Mindanao & Southern Philippines Territory</div>
+            <div class="stat-label">Primary Coverage Area</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">2026</div>
+            <div class="stat-label">Active Implementation</div>
+        </div>
+    </div>
+    <div style="background: #eff6ff; padding: 25px; border-radius: 12px; border: 2px solid #93c5fd;">
+        <h3 style="font-size: 16px; font-weight: 700; color: #1e40af; margin-bottom: 15px;">Development Sectors Portfolio</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11pt; color: #4b5563;">
+            <div>1. Agriculture</div>
+            <div>9. Manufacturing</div>
+            <div>2. Power</div>
+            <div>10. Natural Resources</div>
+            <div>3. Infrastructure</div>
+            <div>11. Financial Hub</div>
+            <div>4. Education</div>
+            <div>12. Fintech</div>
+            <div>5. Energy</div>
+            <div>13. Tourism</div>
+            <div>6. Public Utilities</div>
+            <div>14. Medical & Healthcare</div>
+            <div>7. Housing</div>
+            <div>15. Technology</div>
+            <div>8. Land Development</div>
+            <div></div>
+        </div>
+    </div>
+    <div class="page-number">Page 6</div>
+</div>
+
+<!-- PROJECT 1: AGRICULTURE -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">1</div>
+        <h2 class="project-title">Agriculture Development</h2>
+    </div>
+    <img src="/assets/projects/agriculture.png" alt="Agriculture" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #10b981 0%, #059669 100%)'; this.alt='Agriculture Development'">
+    <p class="project-content">
+        The Southern Philippines is home to some of the nation's most fertile agricultural lands. The SPDA Agriculture Development Project
+        addresses challenges through comprehensive infrastructure development, technology transfer, and market access support, transforming
+        traditional agricultural practices into modern, sustainable enterprises that enhance productivity by 30-40% while improving farmer
+        incomes and regional food security.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Modernize agricultural infrastructure including irrigation systems and farm-to-market roads</li>
+            <li class="focus-item">Introduce climate-resilient crops and sustainable farming techniques</li>
+            <li class="focus-item">Strengthen farmer cooperatives through capacity building and market linkages</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 7</div>
+</div>
+
+<!-- PROJECT 2: POWER -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">2</div>
+        <h2 class="project-title">Power Development</h2>
+    </div>
+    <img src="/assets/projects/power.png" alt="Power" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'; this.alt='Power Development'">
+    <p class="project-content">
+        Reliable and affordable electricity is fundamental to economic growth. The SPDA Power Development Project addresses supply shortages
+        and service reliability through strategic investments in generation capacity (targeting 1,500-2,000 MW expansion), transmission
+        infrastructure, and renewable energy development, ensuring energy security while achieving 100% household electrification across
+        the region.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Expand power generation capacity through renewable energy plants and efficient facilities</li>
+            <li class="focus-item">Strengthen transmission infrastructure to reduce system losses and improve reliability</li>
+            <li class="focus-item">Electrify remote and island communities through microgrids and off-grid systems</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 8</div>
+</div>
+
+<!-- PROJECT 3: INFRASTRUCTURE -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">3</div>
+        <h2 class="project-title">Infrastructure Development</h2>
+    </div>
+    <img src="/assets/projects/infrastructure.png" alt="Infrastructure" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)'; this.alt='Infrastructure Development'">
+    <p class="project-content">
+        Modern infrastructure connects communities and facilitates trade. The SPDA Infrastructure Development Project addresses critical
+        gaps through strategic investments in transportation networks, maritime facilities, and digital connectivity, targeting 3,000+
+        kilometers of road construction/upgrades, world-class seaport development, and expanded aviation infrastructure to integrate
+        Southern Philippines into national and international trade corridors.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Construct and upgrade national and provincial roads including Pan-Philippine Highway links</li>
+            <li class="focus-item">Develop modern seaport facilities for containerized cargo and larger vessels</li>
+            <li class="focus-item">Expand regional airports to accommodate growing traffic and attract international flights</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 9</div>
+</div>
+
+<!-- PROJECT 4: EDUCATION -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">4</div>
+        <h2 class="project-title">Education Development</h2>
+    </div>
+    <img src="/assets/projects/education.png" alt="Education" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%)'; this.alt='Education Development'">
+    <p class="project-content">
+        Education is the cornerstone of sustainable development. The SPDA Education Development Project takes a holistic approach by
+        investing in modern school facilities, teacher training programs, curriculum development, and educational technology, creating
+        culturally-sensitive learning environments that nurture critical thinking and 21st century skills while ensuring equal opportunities
+        for marginalized communities.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Construct and rehabilitate school buildings to eliminate classroom shortages</li>
+            <li class="focus-item">Enhance teacher quality through comprehensive training and professional development</li>
+            <li class="focus-item">Expand access in remote communities through alternative learning systems</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 10</div>
+</div>
+
+<!-- PROJECT 5: ENERGY -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">5</div>
+        <h2 class="project-title">Energy Transition</h2>
+    </div>
+    <img src="/assets/projects/energy.png" alt="Energy" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #10b981 0%, #059669 100%)'; this.alt='Energy Transition'">
+    <p class="project-content">
+        The Southern Philippines possesses abundant renewable energy resources. The SPDA Energy Development Project champions comprehensive
+        energy transition through development of 2,000-3,000 MW renewable capacity from solar, wind, hydro, geothermal, and biomass sources,
+        implementing energy efficiency programs to reduce consumption by 20-30%, and promoting distributed energy systems to achieve energy
+        independence while creating green jobs.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Develop utility-scale renewable energy projects leveraging indigenous resources</li>
+            <li class="focus-item">Implement conservation programs and technology upgrades across all sectors</li>
+            <li class="focus-item">Promote rooftop solar, community microgrids, and hybrid mini-grids</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 11</div>
+</div>
+
+<!-- PROJECT 6: PUBLIC UTILITIES -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">6</div>
+        <h2 class="project-title">Public Utilities Development</h2>
+    </div>
+    <img src="/assets/projects/public-utilities.png" alt="Public Utilities" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)'; this.alt='Public Utilities'">
+    <p class="project-content">
+        Access to reliable public utilities is fundamental to public health and quality of life. The SPDA Public Utilities Development
+        Project addresses critical gaps through comprehensive investments in water supply infrastructure, wastewater treatment systems,
+        and solid waste management facilities, targeting 95%+ potable water access and achieving zero open dumpsites through modern
+        waste management solutions.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Expand water supply systems and treatment plants for universal access</li>
+            <li class="focus-item">Develop comprehensive sewerage and septage management systems</li>
+            <li class="focus-item">Establish sanitary landfills, recycling centers, and waste-to-energy plants</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 12</div>
+</div>
+
+<!-- PROJECT 7: HOUSING -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">7</div>
+        <h2 class="project-title">Housing Development</h2>
+    </div>
+    <img src="/assets/projects/housing.png" alt="Housing" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #f97316 0%, #ea580c 100%)'; this.alt='Housing Development'">
+    <p class="project-content">
+        Adequate and affordable housing is a fundamental human right. The SPDA Housing Development Project addresses the regional shelter
+        backlog through construction of 500,000+ affordable housing units, community upgrading programs, and innovative housing finance
+        mechanisms, prioritizing climate-resilient housing in well-planned communities with complete access to basic services, schools,
+        and healthcare facilities.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Construct mass housing projects and implement community mortgage programs</li>
+            <li class="focus-item">Upgrade informal settlements through community-driven development</li>
+            <li class="focus-item">Resettle families from disaster-prone zones with livelihood support</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 13</div>
+</div>
+
+<!-- PROJECT 8: LAND DEVELOPMENT -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">8</div>
+        <h2 class="project-title">Land Development</h2>
+    </div>
+    <img src="/assets/projects/land-development.png" alt="Land Development" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #84cc16 0%, #65a30d 100%)'; this.alt='Land Development'">
+    <p class="project-content">
+        Strategic land development attracts investments and creates employment clusters. The SPDA Land Development Project transforms
+        idle lands into productive economic zones, developing 20,000+ hectares of serviced industrial land through establishment of
+        industrial estates, special economic zones, and agro-industrial parks with world-class utilities and ready-to-build sites that
+        significantly reduce barriers to business establishment.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Develop industrial estates and special economic zones with complete infrastructure</li>
+            <li class="focus-item">Create agro-industrial parks linking production with processing facilities</li>
+            <li class="focus-item">Establish free ports and logistics hubs for regional and international trade</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 14</div>
+</div>
+
+<!-- PROJECT 9: MANUFACTURING -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">9</div>
+        <h2 class="project-title">Manufacturing Development</h2>
+    </div>
+    <img src="/assets/projects/manufacturing.png" alt="Manufacturing" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #64748b 0%, #475569 100%)'; this.alt='Manufacturing'">
+    <p class="project-content">
+        Manufacturing drives economic transformation and creates high-value employment. The SPDA Manufacturing Development Project aims
+        to increase the sector's contribution to regional GDP from 15% to 30% through targeted interventions in technology adoption,
+        value chain development, and international market connectivity, developing integrated supply chains in food processing, furniture,
+        metalworking, textiles, and electronics assembly.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Establish industry clusters and facilitate technology transfer programs</li>
+            <li class="focus-item">Develop integrated value chains in priority manufacturing sectors</li>
+            <li class="focus-item">Enhance productivity through automation and international certification</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 15</div>
+</div>
+
+<!-- PROJECT 10: NATURAL RESOURCES -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">10</div>
+        <h2 class="project-title">Natural Resources Management</h2>
+    </div>
+    <img src="/assets/projects/natural-resources.png" alt="Natural Resources" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #059669 0%, #047857 100%)'; this.alt='Natural Resources'">
+    <p class="project-content">
+        The region is richly endowed with natural resources including minerals, forests, and marine ecosystems. The SPDA Natural Resources
+        Development Project promotes responsible utilization through improved governance, strict environmental compliance, and inclusive
+        benefit-sharing, generating 100-150 billion pesos annually from responsible mining while reforesting 500,000+ hectares and
+        restoring fisheries productivity.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Develop mining operations with environmental compliance and community benefit-sharing</li>
+            <li class="focus-item">Implement sustainable forestry and large-scale reforestation programs</li>
+            <li class="focus-item">Restore fisheries through marine protected areas and sustainable practices</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 16</div>
+</div>
+
+<!-- PROJECT 11: FINANCIAL HUB -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">11</div>
+        <h2 class="project-title">Financial Hub Development</h2>
+    </div>
+    <img src="/assets/projects/financial-hub.png" alt="Financial Hub" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)'; this.alt='Financial Hub'">
+    <p class="project-content">
+        A vibrant financial sector channels savings into productive investments. The SPDA Financial Hub Development Project transforms
+        the region into a dynamic financial center serving the BIMP-EAGA region, expanding banking services to achieve 80%+ financial
+        inclusion, developing active capital markets mobilizing 200-300 billion pesos, and promoting Islamic finance alongside conventional
+        banking services.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Expand banking through new branches, digital platforms, and agent networks</li>
+            <li class="focus-item">Establish regional stock exchange and bond market platforms</li>
+            <li class="focus-item">Facilitate investment flows through streamlined regulations</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 17</div>
+</div>
+
+<!-- PROJECT 12: FINTECH -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">12</div>
+        <h2 class="project-title">Fintech Innovation</h2>
+    </div>
+    <img src="/assets/projects/fintech.png" alt="Fintech" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #a855f7 0%, #9333ea 100%)'; this.alt='Fintech Innovation'">
+    <p class="project-content">
+        Financial technology revolutionizes access to services and drives financial inclusion. The SPDA Fintech Development Project
+        positions Southern Philippines as a leading fintech hub by fostering innovation, supporting 200+ fintech startups, and expanding
+        digital payment adoption to 90%+ through mobile wallets and cashless infrastructure, providing 10 million+ users with instant
+        account opening, micro-loans, and investment platforms.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Achieve widespread digital payment adoption including remote barangays</li>
+            <li class="focus-item">Expand digital banking services through mobile applications</li>
+            <li class="focus-item">Develop fintech ecosystem with incubators and sandbox regulations</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 18</div>
+</div>
+
+<!-- PROJECT 13: TOURISM -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">13</div>
+        <h2 class="project-title">Tourism Development</h2>
+    </div>
+    <img src="/assets/projects/tourism.png" alt="Tourism" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #14b8a6 0%, #0d9488 100%)'; this.alt='Tourism Development'">
+    <p class="project-content">
+        The Southern Philippines boasts extraordinary natural beauty and vibrant cultural heritage. The SPDA Tourism Development Project
+        unlocks tourism potential through strategic investments in eco-tourism destinations, cultural heritage sites, and sustainable
+        tourism practices, targeting growth from 2 million to 8 million annual visitors while generating 100-150 billion pesos in
+        revenues that benefit local communities.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Develop world-class eco-tourism destinations with strict conservation standards</li>
+            <li class="focus-item">Preserve cultural heritage through heritage sites and authentic experiences</li>
+            <li class="focus-item">Enhance tourism infrastructure and improve international connectivity</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 19</div>
+</div>
+
+<!-- PROJECT 14: MEDICAL & HEALTHCARE -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">14</div>
+        <h2 class="project-title">Medical & Healthcare Development</h2>
+    </div>
+    <img src="/assets/projects/medical_healthcare.jpg" alt="Medical & Healthcare" class="project-image" onerror="this.src='/assets/projects/medical-and-healthcare.png'; this.onerror=function(){this.style.height='200px'; this.style.background='linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'; this.alt='Medical & Healthcare'}">
+    <p class="project-content">
+        Health is fundamental to human development and economic productivity. The SPDA Medical and Healthcare Development Project addresses
+        critical shortages through comprehensive investments in healthcare infrastructure, expanding hospital capacity by 15,000+ beds,
+        establishing 2,000+ rural health units, training and deploying 20,000+ healthcare professionals, and ensuring quality healthcare
+        becomes accessible and affordable for all residents.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Construct regional medical centers and district hospitals meeting DOH standards</li>
+            <li class="focus-item">Strengthen primary healthcare bringing services to underserved communities</li>
+            <li class="focus-item">Develop comprehensive health insurance and disease prevention programs</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 20</div>
+</div>
+
+<!-- PROJECT 15: TECHNOLOGY -->
+<div class="page project-page">
+    <div class="project-header">
+        <div class="project-number-badge">15</div>
+        <h2 class="project-title">Technology & Digital Transformation</h2>
+    </div>
+    <img src="/assets/projects/technology.jpg" alt="Technology" class="project-image" onerror="this.style.height='200px'; this.style.background='linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)'; this.alt='Technology'">
+    <p class="project-content">
+        Technology enables economic growth and social inclusion. The SPDA Technology Development Project accelerates digital transformation
+        by investing in broadband infrastructure, establishing innovation hubs for startups, and promoting digital literacy from basic
+        to advanced programming, bridging the digital divide and positioning Southern Philippines as an emerging technology hub in
+        Southeast Asia.
+    </p>
+    <div class="project-focus">
+        <h4 class="focus-title">Key Focus Areas</h4>
+        <ul class="focus-list">
+            <li class="focus-item">Expand high-speed internet connectivity to underserved areas</li>
+            <li class="focus-item">Establish technology hubs providing workspace and mentorship</li>
+            <li class="focus-item">Develop digital skills training aligned with industry needs</li>
+        </ul>
+    </div>
+    <div class="page-number">Page 21</div>
+</div>
+
+<!-- CLOSING PAGE -->
+<div class="page" style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 60px; color: white; text-align: center;">
+    <div style="width: 100px; height: 100px; background: white; border-radius: 50%; padding: 12px; margin-bottom: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+        <img src="/assets/spda_logo.png" alt="SPDA Logo" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <h2 style="font-size: 30px; font-weight: 700; margin-bottom: 18px;">Contact Information</h2>
+    <div style="font-size: 16px; line-height: 1.8; margin-bottom: 30px;">
+        <p><strong>Southern Philippines Development Authority</strong></p>
+        <p>Special Envoy for Trade & Investment</p>
+        <p style="margin-top: 15px;">H.E. Pehin Seri Diraja Dato' Seri Farid Ibrahim</p>
+    </div>
+    <div style="font-size: 14px; margin-bottom: 30px;">
+        <p><strong>Contact Details</strong></p>
+        <p style="margin-top: 8px;">Website: spda-specialenvoy.org</p>
+        <p style="margin-top: 4px;">Email: psdfarid@spda-specialenvoy.org</p>
+    </div>
+    <div style="border-top: 2px solid rgba(255,255,255,0.3); padding-top: 20px; margin-top: 20px; font-size: 13px; font-style: italic;">
+        <p>Fostering balanced growth and democratizing opportunities for improvement</p>
+        <p style="margin-top: 12px;">&copy; 2025 SPDA Special Envoy. All rights reserved.</p>
+    </div>
+</div>
+
+</body>
+</html>

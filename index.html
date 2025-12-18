@@ -783,6 +783,20 @@
                     mobileDropdown.appendChild(mobileLink);
                 });
 
+                // Add "View All Projects" link at the top of desktop dropdown
+                const desktopViewAll = document.createElement('a');
+                desktopViewAll.href = '/projects.html';
+                desktopViewAll.className = 'block px-4 py-3 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors border-b border-gray-200';
+                desktopViewAll.innerHTML = '📋 View All Projects';
+                desktopDropdown.insertBefore(desktopViewAll, desktopDropdown.firstChild);
+
+                // Add "View All Projects" link at the top of mobile dropdown
+                const mobileViewAll = document.createElement('a');
+                mobileViewAll.href = '/projects.html';
+                mobileViewAll.className = 'block text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors pb-2 mb-2 border-b border-gray-200';
+                mobileViewAll.innerHTML = '📋 View All Projects';
+                mobileDropdown.insertBefore(mobileViewAll, mobileDropdown.firstChild);
+
                 // Reinitialize Lucide icons for the chevron
                 lucide.createIcons();
             })

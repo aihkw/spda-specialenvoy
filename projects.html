@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Development Projects - SPDA Special Envoy</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="/assets/spda_logo.png">
+<style>body{font-family:Inter,sans-serif; text-align: justify;}</style>
+</head>
+<body class="bg-white">
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<div class="flex items-center space-x-3">
+<img src="/assets/spda_logo.png" alt="SPDA Logo" class="h-10 w-10">
+<span class="font-semibold text-lg">SPDA Special Envoy</span>
+</div>
+<div class="flex items-center space-x-4">
+<a href="/gallery.html" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">Gallery</a>
+<a href="/" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">
+<i data-lucide="arrow-left" class="w-4 h-4 inline mr-1"></i> Back to Home
+</a>
+</div>
+</div>
+</div>
+</nav>
+
+<!-- Hero Section -->
+<section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-white">
+<div class="max-w-7xl mx-auto text-center">
+<h1 class="text-5xl md:text-6xl font-bold mb-6">Development Projects</h1>
+<div class="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
+<p class="text-xl text-gray-600 mb-8">Key sectors for Southern Philippines development</p>
+<button type="button" onclick="openCompanyProfile()" class="inline-flex items-center px-8 py-4 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium shadow-lg transition-colors">
+<i data-lucide="file-text" class="w-5 h-5 mr-2"></i> View Company Profile (Printable A4)
+</button>
+</div>
+</section>
+
+<!-- Projects Grid -->
+<section class="py-20 px-4 sm:px-6 lg:px-8">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="projects-container">
+<!-- Project items will be dynamically loaded here -->
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12 px-4">
+<div class="max-w-7xl mx-auto text-center">
+<p class="text-gray-400">&copy; 2025 SPDA Special Envoy. All rights reserved.</p>
+</div>
+</footer>
+
+<script>
+// Initialize Lucide icons
+lucide.createIcons();
+
+// Open company profile in new window
+function openCompanyProfile() {
+    window.open('/company-profile.html', '_blank', 'width=1200,height=800');
+}
+
+// Load Projects
+fetch('/api/projects.json')
+    .then(response => response.json())
+    .then(data => {
+        const container = document.getElementById('projects-container');
+
+        data.forEach(item => {
+            // Create grid item for projects section
+            const div = document.createElement('div');
+            div.className = 'group cursor-pointer';
+
+            // Convert title to URL format
+            const urlTitle = item.title
+                .replace(/&/g, 'and')
+                .replace(/\s+/g, '-')
+                .toLowerCase();
+
+            div.onclick = () => window.location.href = `/projects/${urlTitle}.html`;
+
+            const imageContainer = document.createElement('div');
+            imageContainer.className = 'relative overflow-hidden rounded-xl shadow-lg mb-3 aspect-square';
+
+            const img = document.createElement('img');
+            const imagePath = item.title
+                .replace(/&/g, 'and')
+                .replace(/\s+/g, '-')
+                .toLowerCase();
+            img.src = `/assets/projects/${imagePath}.png`;
+            img.alt = item.title;
+            img.className = 'w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300';
+            img.onerror = function() {
+                // Try .jpg extension as fallback
+                const jpgPath = `/assets/projects/${imagePath}.jpg`;
+                this.onerror = function() {
+                    this.src = '/assets/placeholder-image.jpg';
+                };
+                this.src = jpgPath;
+            };
+
+            imageContainer.appendChild(img);
+            div.appendChild(imageContainer);
+
+            const title = document.createElement('h3');
+            title.className = 'text-center font-semibold text-gray-800 group-hover:text-blue-600 transition-colors';
+            title.textContent = item.title;
+
+            div.appendChild(title);
+            container.appendChild(div);
+        });
+
+        // Re-initialize icons after dynamic content is loaded
+        lucide.createIcons();
+    })
+    .catch(err => console.log('Error loading projects:', err));
+</script>
+</body>
+</html>
