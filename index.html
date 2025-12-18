@@ -740,11 +740,11 @@
 
                     const img = document.createElement('img');
                     // Special handling for image file names
-                    let imageName = item.title.toLowerCase();
+                    let imageName = item.title.toLowerCase().replace(/ /g, '-').replace(/&/g, 'and');
                     let imageExt = '.png';
 
                     if (item.title === 'Medical & Healthcare') {
-                        imageName = 'medical_healthcare';
+                        imageName = 'medical-and-healthcare';
                         imageExt = '.jpg';
                     } else if (item.title === 'Technology') {
                         imageExt = '.jpg';
